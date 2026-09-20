@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IM+Fell+English&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  
+  <title>sober elf | film & animation</title>
+
+  <style>
+    :root {
+      --burgundy: #461b24;
+      --burgundy-dark: #291015;
+      --leather: #35141b;
+      --oak: #8a6545;
+      --oak-light: #ab825b;
+      --cream: #eadcc4;
+      --muted: #bca991;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+
+      /* Deep burgundy leather */
+      background:
+        radial-gradient(
+          ellipse at 50% 40%,
+          rgba(125, 63, 55, 0.28) 0%,
+          rgba(70, 27, 36, 0.10) 38%,
+          transparent 72%
+        ),
+        radial-gradient(
+          ellipse at 20% 80%,
+          rgba(135, 92, 55, 0.10),
+          transparent 45%
+        ),
+        linear-gradient(
+          135deg,
+          #291015 0%,
+          #461b24 45%,
+          #321219 100%
+        );
+
+      background-attachment: fixed;
+      position: relative;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    /* Very subtle leather grain */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+
+      opacity: 0.16;
+      pointer-events: none;
+
+      background:
+        repeating-radial-gradient(
+          circle at 0 0,
+          rgba(255, 255, 255, 0.035) 0,
+          rgba(255, 255, 255, 0.035) 1px,
+          transparent 1px,
+          transparent 4px
+        );
+
+      mix-blend-mode: overlay;
+      z-index: 0;
+    }
+
+    /* Soft edge darkening */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      box-shadow:
+        inset 0 0 180px rgba(0, 0, 0, 0.55),
+        inset 0 0 35px rgba(0, 0, 0, 0.35);
+      z-index: 0;
+    }
+
+    .container {
+      width: min(1000px, 92%);
+      padding: 60px 20px 80px;
+      text-align: center;
+
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      margin: 0 0 24px;
+
+      font-family: 'IM Fell English', serif;
+      font-size: 12px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+
+      color: var(--oak);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.8rem, 11vw, 8.5rem);
+      line-height: 0.85;
+      letter-spacing: 0.045em;
+      font-weight: 900;
+
+      color: var(--cream);
+
+      /* Slightly pressed / embossed feel */
+      text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08),
+        0 -1px 0 rgba(0, 0, 0, 0.30),
+        0 5px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    .rule {
+      width: 70px;
+      height: 1px;
+
+      margin: 38px auto 30px;
+
+      background: var(--oak);
+      opacity: 0.65;
+    }
+
+    .tagline {
+      margin: 0 auto 50px;
+      font-family: 'EB Garamond', serif;
+      max-width: 620px;
+
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.75;
+
+      color: var(--muted);
+    }
+
+    .section-title {
+      font-family: 'IM Fell English', serif;
+      font-size: 13px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--oak-light);
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .section-title::before,
+    .section-title::after {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: var(--oak);
+      opacity: 0.4;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .video-card {
+      background: rgba(41, 16, 21, 0.6);
+      border: 1px solid rgba(138, 101, 69, 0.25);
+      border-radius: 4px;
+      overflow: hidden;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .video-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(234, 220, 196, 0.4);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .thumbnail-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--burgundy-dark);
+      overflow: hidden;
+    }
+
+    .thumbnail-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .video-card:hover .thumbnail-img {
+      transform: scale(1.04);
+      opacity: 1;
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px;
+      height: 56px;
+      background: rgba(35, 12, 18, 0.85);
+      border: 1px solid var(--oak-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .play-button svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--cream);
+      margin-left: 3px;
+      transition: fill 0.3s ease;
+    }
+
+    .video-card:hover .play-button {
+      background: var(--cream);
+      border-color: var(--cream);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .video-card:hover .play-button svg {
+      fill: var(--burgundy-dark);
+    }
+
+    .card-content {
+      padding: 22px 20px;
+    }
+
+    .card-tag {
+      font-family: 'IM Fell English', serif;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--oak-light);
+      margin: 0 0 8px;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin: 0 0 10px;
+      line-height: 1.25;
+    }
+
+    .card-desc {
+      font-family: 'EB Garamond', serif;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .channel-cta {
+      margin-top: 20px;
+    }
+
+    .youtube-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 28px;
+      background: rgba(35, 12, 18, 0.8);
+      border: 1px solid var(--oak);
+      border-radius: 2px;
+      color: var(--cream);
+      font-family: 'IM Fell English', serif;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .youtube-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--oak-light);
+      transition: fill 0.3s ease;
+    }
+
+    .youtube-btn:hover {
+      background: var(--cream);
+      color: var(--burgundy-dark);
+      border-color: var(--cream);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .youtube-btn:hover svg {
+      fill: var(--burgundy-dark);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 5, 8, 0.92);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      width: min(900px, 100%);
+      background: var(--burgundy-dark);
+      border: 1px solid var(--oak);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      transform: scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+    }
+
+    .modal-overlay.active .modal-container {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 10;
+      line-height: 1;
+      transition: color 0.2s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--cream);
+    }
+
+    .video-aspect-ratio {
+      width: 100%;
+      padding-bottom: 56.25%;
+      position: relative;
+      background: #000;
+    }
+
+    .video-aspect-ratio iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 40px 16px;
+      }
+
+      h1 {
+        letter-spacing: 0.02em;
+      }
+
+      .tagline br {
+        display: none;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <p class="eyebrow">ORIGINAL FILM &amp; ANIMATION</p>
+
+    <h1>sober elf</h1>
+
+    <div class="rule"></div>
+
+    <p class="tagline">
+      Terrifying landscapes of addiction.<br>
+      Beautiful, inspiring stories of recovery.
+    </p>
+
+    <div class="section-title">Character Stories</div>
+
+    <div class="video-grid">
+      
+      <!-- Video Card 1: Dave's Story -->
+      <article class="video-card" onclick="openVideoModal('YOUR_YOUTUBE_VIDEO_ID', 'Dave\'s Story - Short Film Trailer')">
+        <div class="thumbnail-wrapper">
+          <img src="https://placehold.co/1280x720/35141b/eadcc4?text=Dave%27s+Story+Trailer" alt="Dave's Story - Sober Elf" class="thumbnail-img">
+          <div class="play-button" aria-label="Play video">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="card-content">
+          <p class="card-tag">Episode 01 • Trailer</p>
+
+          <h2 class="card-title">Dave's Story</h2>
+          <p class="card-desc">A short animated film exploring the dark realities of addiction and the quiet resilience found in recovery.</p>
+        </div>
+      </article>
+
+      <!-- Video Card 2: Upcoming Character Placeholder -->
+      <article class="video-card" style="opacity: 0.65; cursor: default;">
+        <div class="thumbnail-wrapper">
+          <img src="https://placehold.co/1280x720/291015/8a6545?text=Coming+Soon" alt="Upcoming Story" class="thumbnail-img">
+        </div>
+        <div class="card-content">
+          <p class="card-tag">Episode 02 • In Production</p>
+
+          <h2 class="card-title">Next Story</h2>
+          <p class="card-desc">Another personal journey into the terrifying landscapes of addiction and inspiring paths to recovery.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- YouTube Channel CTA -->
+    <div class="channel-cta">
+      <a href="https://www.youtube.com/@SoberElfStudio?sub_confirmation=1" target="_blank" rel="noopener noreferrer" class="youtube-btn">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        Subscribe on YouTube
+      </a>
+    </div>
+
+  </main>
+
+  <div class="modal-overlay" id="videoModal" onclick="closeVideoModal(event)">
+    <div class="modal-container" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeVideoModal()" aria-label="Close modal">&times;</button>
+      <div class="video-aspect-ratio">
+        <iframe id="youtubeIframe" src="" title="Sober Elf Video Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openVideoModal(videoId, title) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('youtubeIframe');
+      
+      // Use privacy-enhanced YouTube domain
+      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoModal(event) {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('youtubeIframe');
+      
+      iframe.src = '';
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeVideoModal();
+      }
+    });
+  </script>
+
+</body>
+</html>
