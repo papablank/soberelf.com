@@ -133,7 +133,17 @@
         0 -1px 0 rgba(0, 0, 0, 0.30),
         0 5px 12px rgba(0, 0, 0, 0.35);
     }
-   
+    
+     .wordmark {
+        max-width: 100%;
+        width: min(700px, 90%);
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        /* subtle drop shadow, similar mood to the old text-shadow */
+        filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.35));
+    }
+
     .elf {
         font-family: 'Berkshire Swash', 'Playfair Display', serif;
         font-weight: 400;
@@ -376,8 +386,8 @@
 
     <p class="eyebrow">ORIGINAL FILM &amp; ANIMATION</p>
 
-    <h2>sober<span class="elf">elf</span></h2>
-
+    <!-- <h2>sober<span class="elf">elf</span></h2> -->
+    <img src="sober-elf-typeface.png" alt="sober elf" class="wordmark">
     <div class="rule"></div>
 
     <p class="tagline">
