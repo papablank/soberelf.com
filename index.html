@@ -405,7 +405,8 @@
           <div class="thumb-wrapper">
             <img class="card-thumb"
                  src="https://img.youtube.com/vi/m460AsqqzPs/maxresdefault.jpg"
-                 onerror="this.onerror=null;this.src='https://img.youtube.com/vi/m460AsqqzPs/hqdefault.jpg';"
+                 onload="thumbCheck(this,'m460AsqqzPs')"
+                 onerror="thumbFallback(this,'m460AsqqzPs')"
                  alt="Dave’s Story, Episode 1: The Exception">
             <div class="play-button">▶</div>
           </div>
@@ -420,7 +421,8 @@
           <div class="thumb-wrapper">
             <img class="card-thumb"
                  src="https://img.youtube.com/vi/tifFR94e0O8/maxresdefault.jpg"
-                 onerror="this.onerror=null;this.src='https://img.youtube.com/vi/tifFR94e0O8/hqdefault.jpg';"
+                 onload="thumbCheck(this,'tifFR94e0O8')"
+                 onerror="thumbFallback(this,'tifFR94e0O8')"
                  alt="Dave’s Story, Episode 2: The Golden Boy">
             <div class="play-button">▶</div>
           </div>
@@ -452,6 +454,20 @@
   </div>
 
   <script>
+    // Thumbnail helpers: YouTube returns a tiny gray placeholder (not an error)
+    // when maxresdefault.jpg doesn't exist, so check the image size on load.
+    function thumbFallback(img, id) {
+      img.onload = null;
+      img.onerror = null;
+      img.src = 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg';
+    }
+
+    function thumbCheck(img, id) {
+      if (img.naturalWidth <= 120) {
+        thumbFallback(img, id);
+      }
+    }
+
     function openModal(videoId) {
       const modal = document.getElementById('videoModal');
       const iframe = document.getElementById('modalIframe');
