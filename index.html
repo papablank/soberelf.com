@@ -405,8 +405,7 @@
           <div class="thumb-wrapper">
             <img class="card-thumb"
                  src="https://img.youtube.com/vi/m460AsqqzPs/maxresdefault.jpg"
-                 onload="thumbCheck(this,'m460AsqqzPs')"
-                 onerror="thumbFallback(this,'m460AsqqzPs')"
+                 onerror="this.onerror=null;this.src='https://img.youtube.com/vi/m460AsqqzPs/hqdefault.jpg';"
                  alt="Dave’s Story, Episode 1: The Exception">
             <div class="play-button">▶</div>
           </div>
@@ -426,7 +425,21 @@
           </div>
           <div class="card-body">
             <div class="card-title">Dave’s Story | Episode 2 — The Golden Boy</div>
-            <div class="card-subtitle">2 Minutes 13 Seconds • Original Series</div>
+            <div class="card-subtitle">2:13 • Original Series</div>
+          </div>
+        </div>
+
+        <!-- CHARACTER CARD: DAVE, EPISODE 3 -->
+        <div class="card" onclick="openModal('bwERGHviSn0')">
+          <div class="thumb-wrapper">
+            <img class="card-thumb"
+                 src="https://img.youtube.com/vi/bwERGHviSn0/hqdefault.jpg"
+                 alt="Dave’s Story, Episode 3: The Career">
+            <div class="play-button">▶</div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Dave’s Story | Episode 3 — The Career</div>
+            <div class="card-subtitle">1:59 • Original Series</div>
           </div>
         </div>
       </div>
@@ -452,20 +465,6 @@
   </div>
 
   <script>
-    // Thumbnail helpers: YouTube returns a tiny gray placeholder (not an error)
-    // when maxresdefault.jpg doesn't exist, so check the image size on load.
-    function thumbFallback(img, id) {
-      img.onload = null;
-      img.onerror = null;
-      img.src = 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg';
-    }
-
-    function thumbCheck(img, id) {
-      if (img.naturalWidth <= 120) {
-        thumbFallback(img, id);
-      }
-    }
-
     function openModal(videoId) {
       const modal = document.getElementById('videoModal');
       const iframe = document.getElementById('modalIframe');
