@@ -197,6 +197,12 @@
       margin-top: 20px;
     }
 
+    a.card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+
     .card {
       background: rgba(41, 16, 21, 0.7);
       border: 1px solid rgba(138, 101, 69, 0.3);
@@ -395,53 +401,36 @@
       Inspiring stories of recovery.
     </p>
 
-    <!-- VIDEO PORTFOLIO GRID -->
+    <!-- FEATURED PROJECTS -->
     <section class="portfolio-section">
-      <p class="section-title">FEATURED STORIES</p>
-      
+      <p class="section-title">FEATURED PROJECTS</p>
+
       <div class="video-grid">
-        <!-- CHARACTER CARD: DAVE, EPISODE 1 -->
-        <div class="card" onclick="openModal('m460AsqqzPs')">
+        <!-- PROJECT CARD: DAVE'S STORY -->
+        <a class="card" href="/dave/">
           <div class="thumb-wrapper">
             <img class="card-thumb"
                  src="https://img.youtube.com/vi/m460AsqqzPs/maxresdefault.jpg"
                  onerror="this.onerror=null;this.src='https://img.youtube.com/vi/m460AsqqzPs/hqdefault.jpg';"
-                 alt="Dave’s Story, Episode 1: The Exception">
-            <div class="play-button">▶</div>
+                 alt="Dave’s Story">
           </div>
           <div class="card-body">
-            <div class="card-title">Dave’s Story | Episode 1 — The Exception</div>
-            <div class="card-subtitle">45 Seconds • Original Series</div>
+            <div class="card-title">Dave’s Story</div>
+            <div class="card-subtitle">Animated series • 3 of 7 episodes out</div>
           </div>
-        </div>
+        </a>
 
-        <!-- CHARACTER CARD: DAVE, EPISODE 2 -->
-        <div class="card" onclick="openModal('tifFR94e0O8')">
+        <!-- PROJECT CARD: CLEAN FOR TODAY -->
+        <a class="card" href="/day/">
           <div class="thumb-wrapper">
-            <img class="card-thumb"
-                 src="https://img.youtube.com/vi/tifFR94e0O8/hqdefault.jpg"
-                 alt="Dave’s Story, Episode 2: The Golden Boy">
-            <div class="play-button">▶</div>
+            <img class="card-thumb" src="/img/cft-card.jpg"
+                 alt="Clean For Today: puppets of people in recovery, side by side">
           </div>
           <div class="card-body">
-            <div class="card-title">Dave’s Story | Episode 2 — The Golden Boy</div>
-            <div class="card-subtitle">2:13 • Original Series</div>
+            <div class="card-title">Clean For Today</div>
+            <div class="card-subtitle">Your first 28 days • 28 daily reflections</div>
           </div>
-        </div>
-
-        <!-- CHARACTER CARD: DAVE, EPISODE 3 -->
-        <div class="card" onclick="openModal('bwERGHviSn0')">
-          <div class="thumb-wrapper">
-            <img class="card-thumb"
-                 src="https://img.youtube.com/vi/bwERGHviSn0/hqdefault.jpg"
-                 alt="Dave’s Story, Episode 3: The Career">
-            <div class="play-button">▶</div>
-          </div>
-          <div class="card-body">
-            <div class="card-title">Dave’s Story | Episode 3 — The Career</div>
-            <div class="card-subtitle">1:59 • Original Series</div>
-          </div>
-        </div>
+        </a>
       </div>
     </section>
 
@@ -453,38 +442,6 @@
     </div>
 
   </main>
-
-  <!-- LIGHTBOX POPUP MODAL -->
-  <div id="videoModal" class="modal" onclick="closeModal(event)">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModalDirect()">&times;</span>
-      <div class="modal-video-container">
-        <iframe id="modalIframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function openModal(videoId) {
-      const modal = document.getElementById('videoModal');
-      const iframe = document.getElementById('modalIframe');
-      iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
-      modal.classList.add('active');
-    }
-
-    function closeModalDirect() {
-      const modal = document.getElementById('videoModal');
-      const iframe = document.getElementById('modalIframe');
-      iframe.src = '';
-      modal.classList.remove('active');
-    }
-
-    function closeModal(event) {
-      if (event.target.id === 'videoModal') {
-        closeModalDirect();
-      }
-    }
-  </script>
 
 </body>
 </html>

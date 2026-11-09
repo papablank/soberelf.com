@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IM+Fell+English&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-  
-  <title>sober elf</title>
+  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=DM+Serif+Display&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IM+Fell+English&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <title>Dave’s Story · sober elf</title>
 
   <style>
     :root {
@@ -17,6 +16,7 @@
       --oak: #8a6545;
       --cream: #eadcc4;
       --muted: #bca991;
+      --gold: #c9a45c;
     }
 
     * {
@@ -117,9 +117,9 @@
       color: var(--oak);
     }
 
-    h1 {
+    h2 {
       margin: 0;
-      font-family: 'Playfair Display', serif;
+      font-family: 'DM Serif Display', serif;
       font-size: clamp(4rem, 12vw, 9rem);
       line-height: 0.85;
       letter-spacing: 0.045em;
@@ -133,7 +133,27 @@
         0 -1px 0 rgba(0, 0, 0, 0.30),
         0 5px 12px rgba(0, 0, 0, 0.35);
     }
+    
+     .wordmark {
+        max-width: 100%;
+        width: min(700px, 90%);
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        /* subtle drop shadow, similar mood to the old text-shadow */
+        filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.35));
+    }
 
+    .elf {
+        font-family: 'Berkshire Swash', 'Playfair Display', serif;
+        font-weight: 400;
+        background: linear-gradient(135deg, #e6c98a 0%, #c9a45c 50%, #9c7a3c 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: none;
+    }
+    
     .rule {
       width: 70px;
       height: 1px;
@@ -349,13 +369,37 @@
         padding: 40px 20px;
       }
 
-      h1 {
+      h2 {
         letter-spacing: 0.02em;
       }
 
       .tagline br {
         display: none;
       }
+    }
+
+    .wordmark.small { width: min(320px, 70%); }
+    .home-link { display: inline-block; }
+    .series-title {
+      margin: 28px 0 0;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      color: var(--cream);
+      text-shadow: 0 5px 12px rgba(0, 0, 0, 0.35);
+    }
+    .coming, .credit {
+      font-family: 'EB Garamond', serif;
+      color: var(--muted);
+      margin: 28px 0 0;
+    }
+    .credit {
+      margin-top: 10px;
+      font-family: 'IM Fell English', serif;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--oak);
     }
   </style>
 </head>
@@ -364,34 +408,68 @@
 
   <main class="container">
 
-    <p class="eyebrow">ORIGINAL FILM &amp; ANIMATION</p>
+    <p class="eyebrow">AN ORIGINAL ANIMATED SERIES</p>
 
-    <h1>sober elf</h1>
-
+    <!-- <h2>sober<span class="elf">elf</span></h2> -->
+    <a href="/" class="home-link"><img src="/sober-elf-typeface.png" alt="sober elf — home" class="wordmark small"></a>
+    <h1 class="series-title">Dave’s Story</h1>
     <div class="rule"></div>
 
     <p class="tagline">
-      Terrifying landscapes of addiction.<br>
-      Beautiful, inspiring stories of recovery.
+      He was born to be exceptional. His addiction had other plans.<br>
+      A seven-part story of addiction and recovery.
     </p>
 
     <!-- VIDEO PORTFOLIO GRID -->
     <section class="portfolio-section">
-      <p class="section-title">FEATURED STORIES</p>
+      <p class="section-title">EPISODES</p>
       
       <div class="video-grid">
-        <!-- CHARACTER CARD: DAVE -->
-        <div class="card" onclick="openModal('kQfGaKMBWRc')">
+        <!-- CHARACTER CARD: DAVE, EPISODE 1 -->
+        <div class="card" onclick="openModal('m460AsqqzPs')">
           <div class="thumb-wrapper">
-            <img class="card-thumb" src="https://img.youtube.com/vi/kQfGaKMBWRc/maxresdefault.jpg" alt="Dave's Story Trailer">
+            <img class="card-thumb"
+                 src="https://img.youtube.com/vi/m460AsqqzPs/maxresdefault.jpg"
+                 onerror="this.onerror=null;this.src='https://img.youtube.com/vi/m460AsqqzPs/hqdefault.jpg';"
+                 alt="Dave’s Story, Episode 1: The Exception">
             <div class="play-button">▶</div>
           </div>
           <div class="card-body">
-            <div class="card-title">Dave’s Story</div>
-            <div class="card-subtitle">30-Second Teaser • Original Series</div>
+            <div class="card-title">Episode 1 — The Exception</div>
+            <div class="card-subtitle">45 Seconds • Original Series</div>
+          </div>
+        </div>
+
+        <!-- CHARACTER CARD: DAVE, EPISODE 2 -->
+        <div class="card" onclick="openModal('tifFR94e0O8')">
+          <div class="thumb-wrapper">
+            <img class="card-thumb"
+                 src="https://img.youtube.com/vi/tifFR94e0O8/hqdefault.jpg"
+                 alt="Dave’s Story, Episode 2: The Golden Boy">
+            <div class="play-button">▶</div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Episode 2 — The Golden Boy</div>
+            <div class="card-subtitle">2:13 • Original Series</div>
+          </div>
+        </div>
+
+        <!-- CHARACTER CARD: DAVE, EPISODE 3 -->
+        <div class="card" onclick="openModal('bwERGHviSn0')">
+          <div class="thumb-wrapper">
+            <img class="card-thumb"
+                 src="https://img.youtube.com/vi/bwERGHviSn0/hqdefault.jpg"
+                 alt="Dave’s Story, Episode 3: The Career">
+            <div class="play-button">▶</div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">Episode 3 — The Career</div>
+            <div class="card-subtitle">1:59 • Original Series</div>
           </div>
         </div>
       </div>
+      <p class="coming">Episodes 4–7 coming soon.</p>
+      <p class="credit">Original music by Aaron Scharmer</p>
     </section>
 
     <!-- SUBSCRIBE CTA -->
