@@ -39,7 +39,7 @@ VIDEOS = [
     ("Progress", ""),
     ("Shame", ""),
     ("The Mirror", ""),
-    ("Making It Right", ""),
+    ("The Plan", ""),
     ("Earning It Back", ""),
     ("Saturday Night", ""),
     ("Grateful Anyway", ""),
