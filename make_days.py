@@ -108,6 +108,8 @@ def page(title, head_extra, body):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <meta name="referrer" content="no-referrer">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>{html.escape(title)}</title>
 {head_extra}<style>{CSS}</style>
 </head>
