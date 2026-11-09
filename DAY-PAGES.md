@@ -16,8 +16,10 @@ If a video moves, gets re-cut, or comes down, you change one line and every book
 When the playlist exists, paste its link into `PLAYLIST` at the top too.
 
 ## What each page does
-- Link filled in: forwards to the video instantly, with a "Watch" button as backup.
-- Link empty: a calm "coming soon" page that sends the reader back to their booklet.
+- Every page shows that day's reflection written out (CFT: Online text, locked 2026-11-09).
+- Link filled in: a "Watch Day N" button at the top opens the video.
+- Link empty: a short note says the video is coming soon.
+- To change a day's words, edit SCRIPTS in make_days.py and run it again.
 - Every page carries the 988 line.
 - `soberelf.com/day/` lists all 28 days for counselors to bookmark.
 
