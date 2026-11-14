@@ -1,0 +1,74 @@
+@font-face{font-family:"DM Serif Display";src:url(/assets/fonts/dm-serif-display-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"EB Garamond";src:url(/assets/fonts/eb-garamond-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"EB Garamond";src:url(/assets/fonts/eb-garamond-latin-400-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"EB Garamond";src:url(/assets/fonts/eb-garamond-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"IM Fell English";src:url(/assets/fonts/im-fell-english-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+
+:root{--deep:#291015;--burgundy:#461b24;--leather:#35141b;--oak:#8a6545;--cream:#eadcc4;--muted:#bca991;--gold:#c9a45c}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:#291015}
+body{margin:0;color:var(--cream);font-family:"EB Garamond",Georgia,serif;font-size:1.15rem;line-height:1.7;
+  background:radial-gradient(ellipse at 50% 20%,rgba(125,63,55,.28),transparent 60%),linear-gradient(135deg,#291015 0%,#461b24 45%,#321219 100%);background-color:#291015;
+  min-height:100vh;position:relative}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
+  background:repeating-radial-gradient(circle at 0 0,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 4px)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;box-shadow:inset 0 0 180px rgba(0,0,0,.5)}
+a{color:var(--gold)}a:hover{color:var(--cream)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{width:min(900px,100%);margin:0 auto;padding:0 22px;position:relative;z-index:1}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;z-index:9;background:var(--deep);padding:8px 12px}
+
+.top{position:relative;z-index:2;border-bottom:1px solid rgba(138,101,69,.35)}
+.top .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;padding-top:14px;padding-bottom:14px}
+.top .logo img{display:block;height:46px;width:auto;filter:drop-shadow(0 3px 8px rgba(0,0,0,.35))}
+.top nav{display:flex;flex-wrap:wrap;gap:2px 18px}
+.top nav a{font-family:"IM Fell English",Georgia,serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:12px 0;min-height:44px;display:inline-flex;align-items:center}
+.top nav a:hover,.top nav a[aria-current]{color:var(--gold)}
+
+main{position:relative;z-index:1}
+section{padding:56px 0;border-bottom:1px solid rgba(138,101,69,.22)}
+section:last-of-type{border-bottom:0}
+.label{font-family:"IM Fell English",Georgia,serif;font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 14px}
+h1,h2{font-family:"DM Serif Display",Georgia,serif;font-weight:400;line-height:1.08;margin:0 0 18px;color:var(--cream)}
+h1{font-size:clamp(2.3rem,7vw,4rem);text-shadow:0 4px 12px rgba(0,0,0,.35)}
+h2{font-size:clamp(1.7rem,4.5vw,2.4rem)}
+h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:1.35rem;margin:0 0 6px}
+p{margin:0 0 16px}
+.lead{font-size:1.3rem;color:var(--muted);max-width:640px}
+.muted{color:var(--muted)}
+.hero{padding:64px 0 56px}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 26px;border-radius:4px;font-family:"IM Fell English",Georgia,serif;font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold);cursor:pointer}
+.btn.main{background:var(--gold);color:var(--deep)}
+.btn.main:hover{background:var(--cream);border-color:var(--cream);color:var(--deep)}
+.btn.alt{background:rgba(41,16,21,.6);color:var(--cream);border-color:var(--oak)}
+.btn.alt:hover{border-color:var(--cream);color:var(--cream)}
+.quote{font-size:1.4rem;line-height:1.6;font-style:italic;border-left:2px solid var(--oak);padding-left:22px;margin:0 0 12px}
+.sig{font-family:"IM Fell English",Georgia,serif;color:var(--gold);letter-spacing:.08em}
+ul.plain,ol.steps{padding-left:1.2rem;margin:0 0 16px}
+ul.plain li,ol.steps li{margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.card{display:block;background:rgba(41,16,21,.7);border:1px solid rgba(138,101,69,.35);border-radius:6px;overflow:hidden;color:inherit;text-decoration:none}
+a.card:hover{border-color:var(--cream)}
+.card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.card .body{padding:16px 18px}
+.card .body p{margin:0;color:var(--muted);font-size:1rem}
+.page img{aspect-ratio:auto;background:#fff}
+.photo{border:1px dashed var(--oak);border-radius:6px;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1rem;padding:16px;text-align:center}
+.add{display:inline-block;background:rgba(201,164,92,.14);border:1px dashed var(--gold);color:var(--gold);padding:2px 8px;border-radius:3px;font-size:.95rem}
+.box{background:rgba(41,16,21,.7);border:1px solid rgba(138,101,69,.35);border-radius:6px;padding:22px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+form{display:grid;gap:16px}
+label{display:grid;gap:6px;font-size:1rem;color:var(--cream)}
+input,select,textarea{font:inherit;font-size:1rem;color:var(--cream);background:var(--deep);border:1px solid var(--oak);border-radius:4px;padding:10px 12px;min-height:46px}
+textarea{min-height:120px}
+.note{font-size:.95rem;color:var(--muted)}
+.values dt{font-family:"DM Serif Display",Georgia,serif;font-size:1.3rem}
+.values dd{margin:0 0 14px;color:var(--muted)}
+
+footer{position:relative;z-index:1;border-top:1px solid rgba(138,101,69,.35);padding:34px 0 46px;font-size:.98rem;color:var(--muted)}
+footer .help{border-left:3px solid var(--gold);padding:10px 14px;background:rgba(41,16,21,.6);color:var(--cream);margin-bottom:18px}
+footer .help a{color:var(--gold)}
+footer p{margin:0 0 10px}
+footer .fine{font-size:.88rem}
+@media (max-width:600px){section{padding:42px 0}.hero{padding:44px 0 40px}.top .logo img{height:38px}.quote{font-size:1.2rem}}

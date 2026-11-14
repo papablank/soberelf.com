@@ -1,449 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=DM+Serif+Display&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=IM+Fell+English&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <title>sober elf</title>
-
-  <style>
-    :root {
-      --burgundy: #461b24;
-      --burgundy-dark: #291015;
-      --leather: #35141b;
-      --oak: #8a6545;
-      --cream: #eadcc4;
-      --muted: #bca991;
-      --gold: #c9a45c;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color: var(--cream);
-
-      font-family: Georgia, "Times New Roman", serif;
-
-      /* Deep burgundy leather */
-      background:
-        radial-gradient(
-          ellipse at 50% 40%,
-          rgba(125, 63, 55, 0.28) 0%,
-          rgba(70, 27, 36, 0.10) 38%,
-          transparent 72%
-        ),
-        radial-gradient(
-          ellipse at 20% 80%,
-          rgba(135, 92, 55, 0.10),
-          transparent 45%
-        ),
-        linear-gradient(
-          135deg,
-          #291015 0%,
-          #461b24 45%,
-          #321219 100%
-        );
-
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* Very subtle leather grain */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-
-      opacity: 0.16;
-      pointer-events: none;
-
-      background:
-        repeating-radial-gradient(
-          circle at 0 0,
-          rgba(255, 255, 255, 0.035) 0,
-          rgba(255, 255, 255, 0.035) 1px,
-          transparent 1px,
-          transparent 4px
-        );
-
-      mix-blend-mode: overlay;
-    }
-
-    /* Soft edge darkening */
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-
-      pointer-events: none;
-
-      box-shadow:
-        inset 0 0 180px rgba(0, 0, 0, 0.55),
-        inset 0 0 35px rgba(0, 0, 0, 0.35);
-    }
-
-    .container {
-      width: min(900px, 90%);
-      padding: 60px 30px;
-      text-align: center;
-
-      position: relative;
-      z-index: 1;
-    }
-
-    .eyebrow {
-      margin: 0 0 24px;
-
-      font-family: 'IM Fell English', serif;
-      font-size: 12px;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-
-      color: var(--oak);
-    }
-
-    h2 {
-      margin: 0;
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(4rem, 12vw, 9rem);
-      line-height: 0.85;
-      letter-spacing: 0.045em;
-      font-weight: 900;
-
-      color: var(--cream);
-
-      /* Slightly pressed / embossed feel */
-      text-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.08),
-        0 -1px 0 rgba(0, 0, 0, 0.30),
-        0 5px 12px rgba(0, 0, 0, 0.35);
-    }
-    
-     .wordmark {
-        max-width: 100%;
-        width: min(700px, 90%);
-        height: auto;
-        display: block;
-        margin: 0 auto;
-        /* subtle drop shadow, similar mood to the old text-shadow */
-        filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.35));
-    }
-
-    .elf {
-        font-family: 'Berkshire Swash', 'Playfair Display', serif;
-        font-weight: 400;
-        background: linear-gradient(135deg, #e6c98a 0%, #c9a45c 50%, #9c7a3c 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        text-shadow: none;
-    }
-    
-    .rule {
-      width: 70px;
-      height: 1px;
-
-      margin: 38px auto 30px;
-
-      background: var(--oak);
-      opacity: 0.65;
-    }
-
-    .tagline {
-      margin: 0 auto;
-      font-family: 'EB Garamond', serif;
-      max-width: 620px;
-
-      font-size: clamp(1.05rem, 2vw, 1.35rem);
-      line-height: 1.75;
-
-      color: var(--muted);
-    }
-
-    /* Video Portfolio Section */
-    .portfolio-section {
-      margin-top: 50px;
-    }
-
-    .section-title {
-      font-family: 'IM Fell English', serif;
-      font-size: 14px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--oak);
-      margin-bottom: 25px;
-    }
-
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    a.card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .card {
-      background: rgba(41, 16, 21, 0.7);
-      border: 1px solid rgba(138, 101, 69, 0.3);
-      border-radius: 6px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-      text-align: left;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: var(--cream);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    }
-
-    .thumb-wrapper {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
-      background: #000;
-      overflow: hidden;
-    }
-
-    .card-thumb {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.85;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .card:hover .card-thumb {
-      opacity: 1;
-      transform: scale(1.03);
-    }
-
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50px;
-      height: 50px;
-      background: rgba(70, 27, 36, 0.85);
-      border: 1px solid var(--cream);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--cream);
-      font-size: 18px;
-      padding-left: 3px;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-
-    .card:hover .play-button {
-      background: var(--oak);
-      transform: translate(-50%, -50%) scale(1.1);
-    }
-
-    .card-body {
-      padding: 16px 20px;
-    }
-
-    .card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      color: var(--cream);
-      margin-bottom: 4px;
-    }
-
-    .card-subtitle {
-      font-family: 'EB Garamond', serif;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    /* YouTube CTA Button */
-    .cta-container {
-      margin-top: 45px;
-    }
-
-    .yt-button {
-      display: inline-block;
-      padding: 12px 28px;
-      font-family: 'IM Fell English', serif;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cream);
-      background: rgba(53, 20, 27, 0.8);
-      border: 1px solid var(--oak);
-      border-radius: 4px;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .yt-button:hover {
-      background: var(--oak);
-      color: var(--burgundy-dark);
-      border-color: var(--cream);
-    }
-
-    /* Lightbox Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: rgba(0, 0, 0, 0.88);
-      backdrop-filter: blur(5px);
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-content {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      background: var(--burgundy-dark);
-      border: 1px solid var(--oak);
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    }
-
-    .modal-video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-    }
-
-    .modal-video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      color: var(--cream);
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 1001;
-      line-height: 1;
-    }
-
-    .close-modal:hover {
-      color: var(--oak);
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 40px 20px;
-      }
-
-      h2 {
-        letter-spacing: 0.02em;
-      }
-
-      .tagline br {
-        display: none;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Clean For Today: a pocket booklet of 28 one-page reflections for people in inpatient treatment, from Sober Elf Studio.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/dm-serif-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<title>Sober Elf Studio · Clean For Today</title>
 </head>
-
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+<a class="logo" href="/"><img src="/sober-elf-typeface.png" alt="sober elf, home" width="230" height="46"></a>
+<nav aria-label="Main"><a href="/counselors/">For Counselors</a><a href="/booklet/">Free PDF</a><a href="/dave/">Dave's Story</a><a href="/studio/">Studio</a><a href="/about/">About</a></nav>
+</div></header>
+<main id="main">
+<section class="hero"><div class="wrap">
+<p class="label">Clean For Today: Your First 28 Days</p>
+<h1>Something to read when the unit goes quiet.</h1>
+<p class="lead">A pocket booklet of 28 one-page reflections for people in inpatient treatment. It works without a phone or a screen, and each day is being made into a short animated video so it keeps working after discharge.</p>
+<div class="btns"><a class="btn main" href="/counselors/">For Counselors</a><a class="btn alt" href="/booklet/">Get the free PDF</a></div>
+</div></section>
 
-  <main class="container">
+<section><div class="wrap">
+<p class="label">Written from the chair</p>
+<p class="quote">"I've sat in that chair six times. The first five times, I thought I was the exception. Three of those times, I walked out before it was over."</p>
+<p class="sig">Dave B.</p>
+</div></section>
 
-    <p class="eyebrow">ORIGINAL FILM &amp; ANIMATION</p>
+<section><div class="wrap">
+<p class="label">Built for the unit</p>
+<h2>One page a day. No screen needed.</h2>
+<ul class="plain">
+<li>No phone or screen needed. One page a day, about two minutes to read.</li>
+<li>The "Before You Walk Out" page asks the reader to wait an hour and tell a person before they leave.</li>
+<li>Each day is read by a different person in recovery. Day 1 is recorded, and ten more readers have agreed to record.</li>
+</ul>
+</div></section>
 
-    <!-- <h2>sober<span class="elf">elf</span></h2> -->
-    <img src="sober-elf-typeface.png" alt="sober elf" class="wordmark">
-    <div class="rule"></div>
+<section><div class="wrap two">
+<a class="card" href="/dave/"><img src="/img/dave/daves_story_ep01_thumb.jpg" alt="Dave's Story, Episode 1"><div class="body"><h3>Dave's Story</h3><p>A 7-part animated series with an original score by Aaron Scharmer. Five episodes are out.</p></div></a>
+<a class="card" href="/studio/"><img src="/img/cft-card.jpg" alt="Clean For Today puppets, side by side"><div class="body"><h3>Studio</h3><p>We also make video, animation, websites and logos for treatment programs, recovery organizations and independent artists.</p></div></a>
+</div></section>
 
-    <p class="tagline">
-      Terrifying landscapes of addiction.<br>
-      Inspiring stories of recovery.
-    </p>
-
-    <!-- FEATURED PROJECTS -->
-    <section class="portfolio-section">
-      <p class="section-title">FEATURED PROJECTS</p>
-
-      <div class="video-grid">
-        <!-- PROJECT CARD: DAVE'S STORY -->
-        <a class="card" href="/dave/">
-          <div class="thumb-wrapper">
-            <img class="card-thumb"
-                 src="/img/dave/daves_story_ep01_thumb.jpg"
-                 alt="Dave’s Story">
-          </div>
-          <div class="card-body">
-            <div class="card-title">Dave’s Story</div>
-            <div class="card-subtitle">Animated series • 4 of 7 episodes out</div>
-          </div>
-        </a>
-
-        <!-- PROJECT CARD: CLEAN FOR TODAY -->
-        <a class="card" href="/day/">
-          <div class="thumb-wrapper">
-            <img class="card-thumb" src="/img/cft-card.jpg"
-                 alt="Clean For Today: puppets of people in recovery, side by side">
-          </div>
-          <div class="card-body">
-            <div class="card-title">Clean For Today</div>
-            <div class="card-subtitle">Your first 28 days • 28 daily reflections</div>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <!-- SUBSCRIBE CTA -->
-    <div class="cta-container">
-      <a href="https://youtube.com/@SoberElf?sub_confirmation=1" target="_blank" class="yt-button">
-        Subscribe on YouTube
-      </a>
-    </div>
-
-  </main>
-
+<section><div class="wrap">
+<p class="label">Coming 2027</p>
+<p class="lead">A one-hour documentary on addiction and the brain, weaving its biology with the spiritual healing of 12-step recovery.</p>
+</div></section>
+</main>
+<footer><div class="wrap">
+<p class="help"><strong>If a feeling includes wanting to die or hurt yourself, that is an emergency.</strong> Tell someone now, or call or text <a href="tel:988">988</a>.</p>
+<p><a href="mailto:thesoberelf@gmail.com">thesoberelf@gmail.com</a> · <a href="tel:+17156220011">715-622-0011</a> · <a href="/day/">Days 1 to 28</a></p>
+<p class="fine">Clean For Today is an independent project of Sober Elf Studio LLC. It is not affiliated with or endorsed by any twelve-step fellowship or treatment facility. It is not medical advice or a substitute for your care team.</p>
+<p class="fine">© 2026 Sober Elf Studio LLC · soberelf.com</p>
+</div></footer>
 </body>
 </html>
