@@ -172,8 +172,8 @@ BOOKLET = """<section class="hero"><div class="wrap">
 <p class="label">Free PDF</p>
 <h1>The whole booklet, free to download.</h1>
 <p class="lead">Clean For Today: Your First 28 Days. All 28 pages, free for anyone in recovery who wants a copy for themselves.</p>
-<div class="btns"><a class="btn main" href="/booklet/CFT_Booklet_28_Days_r23.pdf" download>Download the free PDF</a></div>
-<p class="note" style="margin-top:12px">PDF, about 13 MB</p>
+<div class="btns"><a class="btn main" href="/booklet/CFT_Booklet_28_Days_r24.pdf" download>Download the free PDF</a></div>
+<p class="note" style="margin-top:12px">PDF, about 12 MB</p>
 </div></section>
 
 <section><div class="wrap">
