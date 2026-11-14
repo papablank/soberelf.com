@@ -126,7 +126,7 @@ COUNSELORS = f"""<section class="hero"><div class="wrap">
 </div></section>
 
 <section><div class="wrap">
-<p class="label">Hand it out in under a minute</p>
+<p class="label">How it works on the unit</p>
 <p>One page a day, about two minutes to read, no phone needed. The days can stand alone, so a reader can start anywhere, skip ahead, or take the rest home.</p>
 <p class="label" style="margin-top:28px">Where it stands</p>
 <p>No licensed clinician has reviewed it yet. That's why it comes to you first.</p>
@@ -147,12 +147,6 @@ COUNSELORS = f"""<section class="hero"><div class="wrap">
 </ol>
 </div></section>
 
-<section><div class="wrap">
-<p class="label">For your program director</p>
-<p>A one-page summary to hand to whoever approves patient materials.</p>
-<p><span class="add">[ADD: program director one-pager PDF]</span></p>
-</div></section>
-
 <section id="request"><div class="wrap">
 <p class="label">Request a proof</p>
 <h2>Tell me what would help</h2>
@@ -170,8 +164,8 @@ COUNSELORS = f"""<section class="hero"><div class="wrap">
 
 BOOKLET = """<section class="hero"><div class="wrap">
 <p class="label">Free PDF</p>
-<h1>The whole booklet, free to print and pass on.</h1>
-<p class="lead">Clean For Today: Your First 28 Days. All 28 pages, for anyone who wants a copy, peer programs and sponsors included.</p>
+<h1>The whole booklet, free to download.</h1>
+<p class="lead">Clean For Today: Your First 28 Days. All 28 pages, free for anyone in recovery who wants a copy for themselves.</p>
 <div class="btns"><a class="btn main" href="/booklet/CFT_Booklet_28_Days_r23.pdf" download>Download the free PDF</a></div>
 <p class="note" style="margin-top:12px">PDF, about 13 MB</p>
 </div></section>
@@ -188,8 +182,8 @@ BOOKLET = """<section class="hero"><div class="wrap">
 </div></section>
 
 <section><div class="wrap">
-<p class="label">Sharing</p>
-<p>Copy and share it freely. Please don't sell it or change it.</p>
+<p class="label">Rights</p>
+<p>Free to download for your own use. © 2026 Sober Elf Studio LLC. All rights reserved.</p>
 </div></section>
 """
 
@@ -212,11 +206,6 @@ STUDIO = f"""<section class="hero"><div class="wrap">
 <div class="card"><img src="/img/cft-card.jpg" alt="Clean For Today puppets, side by side" loading="lazy"><div class="body"><h3>Clean For Today</h3><p>28 animated daily reflections, in production.</p></div></div>
 <div class="card"><div class="photo" style="border:0;border-radius:0">Aaron Scharmer Music</div><div class="body"><h3>Aaron Scharmer Music</h3><p>Website and logo, in progress.</p></div></div>
 </div>
-</div></section>
-
-<section><div class="wrap">
-<p class="label">Pricing</p>
-<p><span class="add">[ADD: prices and terms for client work]</span></p>
 </div></section>
 
 <section id="start"><div class="wrap">
@@ -274,18 +263,19 @@ EPISODES = [  # (number, title, length, YouTube id, thumbnail)
     (2, "The Golden Boy", "2:16", "rWHAB5nlIWU", "/img/dave/daves_story_ep02_thumb.jpg"),
     (3, "The Career", "1:52", "mSqkOI--yGs", "/img/dave/daves_story_ep03_thumb.jpg"),
     (4, "The Message", "1:55", "JuuJgM8pEZA", "/img/dave/daves_story_ep04_thumb.jpg"),
-    # Episode 5 is out (Nov 12, 2026): add its title, length, YouTube id and thumbnail here.
+    (5, "", "", "SBGQN-KArFY", ""),  # add title, length and a local thumbnail when ready
 ]
 
 
 def dave_body():
-    cards = "".join(
-        f'<button class="card ep" type="button" data-id="{vid}" style="padding:0;text-align:left;font:inherit;cursor:pointer">'
-        f'<img src="{img}" alt="" loading="lazy"><span class="body" style="display:block">'
-        f'<h3>Episode {n}: {t}</h3><p>{ln} · Original series</p></span></button>'
-        for n, t, ln, vid, img in EPISODES)
-    cards += ('<div class="card"><div class="photo" style="border:0;border-radius:0">Episode 5</div>'
-              '<div class="body"><h3>Episode 5</h3><p><span class="add">[ADD: Episode 5 title, length, link]</span></p></div></div>')
+    def card(n, t, ln, vid, img):
+        pic = (f'<img src="{img}" alt="" loading="lazy">' if img else
+               f'<span class="photo" style="border:0;border-radius:0;font-family:DM Serif Display,Georgia,serif;font-size:1.6rem">Episode {n}</span>')
+        name = f"Episode {n}: {t}" if t else f"Episode {n}"
+        meta = f"{ln} · Original series" if ln else "Original series"
+        return (f'<button class="card ep" type="button" data-id="{vid}" style="padding:0;text-align:left;font:inherit;cursor:pointer;width:100%">'
+                f'{pic}<span class="body" style="display:block"><h3>{name}</h3><p>{meta}</p></span></button>')
+    cards = "".join(card(*e) for e in EPISODES)
     return f"""<section class="hero"><div class="wrap">
 <p class="label">An original animated series</p>
 <h1>Dave's Story</h1>
@@ -319,7 +309,7 @@ if __name__ == "__main__":
     page("counselors/index.html", "/counselors/", "For Counselors · Sober Elf Studio",
          "Read the Clean For Today proof, mark it up, and tell us if it's worth trying with a few patients.", COUNSELORS)
     page("booklet/index.html", "/booklet/", "Free PDF · Clean For Today",
-         "Download Clean For Today: Your First 28 Days, free to print and pass on.", BOOKLET)
+         "Download Clean For Today: Your First 28 Days, free for your own use.", BOOKLET)
     page("studio/index.html", "/studio/", "Studio · Sober Elf Studio",
          "Video editing, motion graphics, character animation, websites, logos and graphics.", STUDIO)
     page("about/index.html", "/about/", "About · Sober Elf Studio",

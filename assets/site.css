@@ -8,7 +8,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;background:#291015}
 body{margin:0;color:var(--cream);font-family:"EB Garamond",Georgia,serif;font-size:1.15rem;line-height:1.7;
-  background:radial-gradient(ellipse at 50% 20%,rgba(125,63,55,.28),transparent 60%),linear-gradient(135deg,#291015 0%,#461b24 45%,#321219 100%);background-color:#291015;
+  background:radial-gradient(ellipse at 50% 20%,rgba(125,63,55,.28),transparent 60%),linear-gradient(135deg,#291015 0%,#461b24 45%,#321219 100%);background-color:#291015;background-repeat:no-repeat;background-size:100% 100%;
   min-height:100vh;position:relative}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
   background:repeating-radial-gradient(circle at 0 0,rgba(255,255,255,.035) 0,rgba(255,255,255,.035) 1px,transparent 1px,transparent 4px)}
@@ -72,3 +72,4 @@ footer .help a{color:var(--gold)}
 footer p{margin:0 0 10px}
 footer .fine{font-size:.88rem}
 @media (max-width:600px){section{padding:42px 0}.hero{padding:44px 0 40px}.top .logo img{height:38px}.quote{font-size:1.2rem}}
+.ep{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;color:inherit}
