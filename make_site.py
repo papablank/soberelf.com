@@ -147,6 +147,12 @@ COUNSELORS = f"""<section class="hero"><div class="wrap">
 </ol>
 </div></section>
 
+<section><div class="wrap">
+<p class="label">For your program director</p>
+<p>A one-page summary to hand to whoever approves patient materials.</p>
+<div class="btns"><a class="btn alt" href="/counselors/CFT_Program_Director_OnePager.pdf" download>Download the one-pager</a></div>
+</div></section>
+
 <section id="request"><div class="wrap">
 <p class="label">Request a proof</p>
 <h2>Tell me what would help</h2>
@@ -263,7 +269,7 @@ EPISODES = [  # (number, title, length, YouTube id, thumbnail)
     (2, "The Golden Boy", "2:16", "rWHAB5nlIWU", "/img/dave/daves_story_ep02_thumb.jpg"),
     (3, "The Career", "1:52", "mSqkOI--yGs", "/img/dave/daves_story_ep03_thumb.jpg"),
     (4, "The Message", "1:55", "JuuJgM8pEZA", "/img/dave/daves_story_ep04_thumb.jpg"),
-    (5, "", "", "SBGQN-KArFY", ""),  # add title, length and a local thumbnail when ready
+    (5, "The Clean Time", "", "SBGQN-KArFY", ""),  # add length and a local thumbnail when ready
 ]
 
 
