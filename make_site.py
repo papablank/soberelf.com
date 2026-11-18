@@ -91,7 +91,7 @@ HOME = """<section class="hero"><div class="wrap">
 </div></section>
 
 <section><div class="wrap two">
-<a class="card" href="/dave/"><img src="/img/dave/daves_story_ep01_thumb.jpg" alt="Dave's Story, Episode 1"><div class="body"><h3>Dave's Story</h3><p>A 7-part animated series with an original score by Aaron Scharmer. Five episodes are out.</p></div></a>
+<a class="card" href="/dave/"><img src="/img/dave/daves_story_ep01_thumb.jpg" alt="Dave's Story, Episode 1"><div class="body"><h3>Dave's Story</h3><p>A 7-part animated series with an original score by Aaron Scharmer. Six episodes are out.</p></div></a>
 <a class="card" href="/studio/"><img src="/img/cft-card.jpg" alt="Clean For Today puppets, side by side"><div class="body"><h3>Studio</h3><p>We also make video, animation, websites and logos for treatment programs, recovery organizations and independent artists.</p></div></a>
 </div></section>
 
@@ -208,7 +208,7 @@ STUDIO = f"""<section class="hero"><div class="wrap">
 <section><div class="wrap">
 <p class="label">Work</p>
 <div class="grid">
-<a class="card" href="/dave/"><img src="/img/dave/daves_story_ep01_thumb.jpg" alt="Dave's Story, Episode 1" loading="lazy"><div class="body"><h3>Dave's Story</h3><p>Animated series, 5 of 7 episodes out, original score by Aaron Scharmer.</p></div></a>
+<a class="card" href="/dave/"><img src="/img/dave/daves_story_ep01_thumb.jpg" alt="Dave's Story, Episode 1" loading="lazy"><div class="body"><h3>Dave's Story</h3><p>Animated series, 6 of 7 episodes out, original score by Aaron Scharmer.</p></div></a>
 <div class="card"><img src="/img/cft-card.jpg" alt="Clean For Today puppets, side by side" loading="lazy"><div class="body"><h3>Clean For Today</h3><p>28 animated daily reflections, in production.</p></div></div>
 <div class="card"><div class="photo" style="border:0;border-radius:0">Aaron Scharmer Music</div><div class="body"><h3>Aaron Scharmer Music</h3><p>Website and logo, in progress.</p></div></div>
 </div>
@@ -270,6 +270,7 @@ EPISODES = [  # (number, title, length, YouTube id, thumbnail)
     (3, "The Career", "1:52", "mSqkOI--yGs", "/img/dave/daves_story_ep03_thumb.jpg"),
     (4, "The Message", "1:55", "JuuJgM8pEZA", "/img/dave/daves_story_ep04_thumb.jpg"),
     (5, "The Clean Time", "", "SBGQN-KArFY", "/img/dave/daves_story_ep05_thumb.jpg"),  # add length when known
+    (6, "The Surrender", "", "J_bvW1GHLVU", "/img/dave/daves_story_ep06_thumb.jpg"),  # add length when known
 ]
 
 
@@ -289,9 +290,9 @@ def dave_body():
 </div></section>
 
 <section><div class="wrap">
-<p class="label">Episodes · 5 of 7 out</p>
+<p class="label">Episodes · 6 of 7 out</p>
 <div class="grid">{cards}</div>
-<p class="muted" style="margin-top:22px">Episodes 6 and 7 coming soon. Original music by Aaron Scharmer.</p>
+<p class="muted" style="margin-top:22px">Episode 7 coming soon. Original music by Aaron Scharmer.</p>
 <div class="btns"><a class="btn alt" href="https://youtube.com/@SoberElf?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a></div>
 </div></section>
 
