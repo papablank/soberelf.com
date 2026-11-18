@@ -269,8 +269,8 @@ EPISODES = [  # (number, title, length, YouTube id, thumbnail)
     (2, "The Golden Boy", "2:16", "rWHAB5nlIWU", "/img/dave/daves_story_ep02_thumb.jpg"),
     (3, "The Career", "1:52", "mSqkOI--yGs", "/img/dave/daves_story_ep03_thumb.jpg"),
     (4, "The Message", "1:55", "JuuJgM8pEZA", "/img/dave/daves_story_ep04_thumb.jpg"),
-    (5, "The Clean Time", "", "SBGQN-KArFY", "/img/dave/daves_story_ep05_thumb.jpg"),  # add length when known
-    (6, "The Surrender", "", "J_bvW1GHLVU", "/img/dave/daves_story_ep06_thumb.jpg"),  # add length when known
+    (5, "The Clean Time", "2:13", "SBGQN-KArFY", "/img/dave/daves_story_ep05_thumb.jpg"),
+    (6, "The Surrender", "1:49", "J_bvW1GHLVU", "/img/dave/daves_story_ep06_thumb.jpg"),
 ]
 
 
