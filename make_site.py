@@ -91,7 +91,7 @@ HOME = """<section class="hero"><div class="wrap">
 </div></section>
 
 <section><div class="wrap two">
-<a class="card" href="/dave/"><img src="/img/dave/daves_story_ep01_thumb.jpg" alt="Dave's Story, Episode 1"><div class="body"><h3>Dave's Story</h3><p>A 7-part animated series with an original score by Aaron Scharmer. Six episodes are out.</p></div></a>
+<a class="card" href="/dave/"><img src="/img/dave/daves_story_ep01_thumb.jpg" alt="Dave's Story, Episode 1"><div class="body"><h3>Dave's Story</h3><p>An animated series with an original score by Aaron Scharmer. Six episodes are out.</p></div></a>
 <a class="card" href="/studio/"><img src="/img/cft-card.jpg" alt="Clean For Today puppets, side by side"><div class="body"><h3>Studio</h3><p>We also make video, animation, websites and logos for treatment programs, recovery organizations and independent artists.</p></div></a>
 </div></section>
 
@@ -208,7 +208,7 @@ STUDIO = f"""<section class="hero"><div class="wrap">
 <section><div class="wrap">
 <p class="label">Work</p>
 <div class="grid">
-<a class="card" href="/dave/"><img src="/img/dave/daves_story_ep01_thumb.jpg" alt="Dave's Story, Episode 1" loading="lazy"><div class="body"><h3>Dave's Story</h3><p>Animated series, 6 of 7 episodes out, original score by Aaron Scharmer.</p></div></a>
+<a class="card" href="/dave/"><img src="/img/dave/daves_story_ep01_thumb.jpg" alt="Dave's Story, Episode 1" loading="lazy"><div class="body"><h3>Dave's Story</h3><p>Animated series, 6 episodes out, original score by Aaron Scharmer.</p></div></a>
 <div class="card"><img src="/img/cft-card.jpg" alt="Clean For Today puppets, side by side" loading="lazy"><div class="body"><h3>Clean For Today</h3><p>28 animated daily reflections, in production.</p></div></div>
 <div class="card"><div class="photo" style="border:0;border-radius:0">Aaron Scharmer Music</div><div class="body"><h3>Aaron Scharmer Music</h3><p>Website and logo, in progress.</p></div></div>
 </div>
@@ -286,13 +286,13 @@ def dave_body():
     return f"""<section class="hero"><div class="wrap">
 <p class="label">An original animated series</p>
 <h1>Dave's Story</h1>
-<p class="lead">He was born to be exceptional. His addiction had other plans. A seven-part story of addiction and recovery.</p>
+<p class="lead">He was born to be exceptional. His addiction had other plans. A story of addiction and recovery, in his own words.</p>
 </div></section>
 
 <section><div class="wrap">
-<p class="label">Episodes · 6 of 7 out</p>
+<p class="label">Episodes</p>
 <div class="grid">{cards}</div>
-<p class="muted" style="margin-top:22px">Episode 7 coming soon. Original music by Aaron Scharmer.</p>
+<p class="muted" style="margin-top:22px">Original music by Aaron Scharmer.</p>
 <div class="btns"><a class="btn alt" href="https://youtube.com/@SoberElf?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a></div>
 </div></section>
 
@@ -310,7 +310,7 @@ d.addEventListener('close',()=>{{f.src='';}});
 
 if __name__ == "__main__":
     page("dave/index.html", "/dave/", "Dave's Story · Sober Elf Studio",
-         "Dave's Story, a seven-part animated series about addiction and recovery.", dave_body())
+         "Dave's Story, an animated series about addiction and recovery.", dave_body())
     page("index.html", "/", "Sober Elf Studio · Clean For Today",
          "Clean For Today: a pocket booklet of 28 one-page reflections for people in inpatient treatment, from Sober Elf Studio.", HOME)
     page("counselors/index.html", "/counselors/", "For Counselors · Sober Elf Studio",
