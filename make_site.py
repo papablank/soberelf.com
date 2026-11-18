@@ -9,7 +9,7 @@ No analytics, trackers, cookies or outside fonts. Keep it that way.
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-EMAIL = "thesoberelf@gmail.com"
+EMAIL = "dave@soberelf.com"
 PHONE = "715-622-0011"
 PHONE_TEL = "+17156220011"
 
