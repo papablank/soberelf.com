@@ -70,7 +70,7 @@ def page(path, current, title, desc, body):
 HOME = """<section class="hero"><div class="wrap">
 <p class="label">Clean For Today: Your First 28 Days</p>
 <h1>Something to read when the unit goes quiet.</h1>
-<p class="lead">A pocket booklet of 28 one-page reflections for people in inpatient treatment. It works without a phone or a screen, and each day is being made into a short animated video so it keeps working after discharge.</p>
+<p class="lead">A pocket booklet of 28 one-page reflections, written for people in inpatient treatment. No phone or screen needed. Each day is also becoming a short animated video, so the support keeps going after discharge.</p>
 <div class="btns"><a class="btn main" href="/counselors/">For Counselors</a><a class="btn alt" href="/booklet/">Get the free PDF</a></div>
 </div></section>
 
