@@ -73,3 +73,12 @@ footer p{margin:0 0 10px}
 footer .fine{font-size:.88rem}
 @media (max-width:600px){section{padding:42px 0}.hero{padding:44px 0 40px}.top .logo img{height:38px}.quote{font-size:1.2rem}}
 .ep{display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;color:inherit}
+
+.listen{margin-top:30px;background:rgba(41,16,21,.75);border:1px solid var(--gold);border-radius:6px;padding:18px 20px;max-width:560px}
+.listen .t{font-family:"DM Serif Display",Georgia,serif;font-size:1.35rem;margin:0 0 4px}
+.listen .s{color:var(--muted);font-size:1rem;margin:0 0 12px}
+.listen audio{width:100%}
+.voices{font-size:1.25rem;color:var(--cream);border-left:3px solid var(--gold);padding-left:18px;max-width:640px}
+.more{display:grid;grid-template-columns:1fr;gap:6px;background:rgba(41,16,21,.7);border:1px solid var(--gold);border-radius:6px;padding:26px;text-decoration:none;color:inherit}
+.more:hover{border-color:var(--cream)}
+.more .go{font-family:"IM Fell English",Georgia,serif;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-size:.9rem;margin-top:8px}

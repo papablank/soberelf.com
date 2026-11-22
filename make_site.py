@@ -13,8 +13,8 @@ EMAIL = "dave@soberelf.com"
 PHONE = "715-622-0011"
 PHONE_TEL = "+17156220011"
 
-NAV = [("/counselors/", "For Counselors"), ("/booklet/", "Free PDF"),
-       ("/dave/", "Dave's Story"), ("/studio/", "Studio"), ("/about/", "About")]
+NAV = [("/day/", "The 28 Days"), ("/booklet/", "Free PDF"), ("/counselors/", "For Counselors"),
+       ("/studio/", "Studio"), ("/about/", "About")]
 
 
 def head(title, desc):
@@ -51,7 +51,7 @@ def top(current):
 FOOT = f"""</main>
 <footer><div class="wrap">
 <p class="help"><strong>If a feeling includes wanting to die or hurt yourself, that is an emergency.</strong> Tell someone now, or call or text <a href="tel:988">988</a>.</p>
-<p><a href="mailto:{EMAIL}">{EMAIL}</a> · <a href="tel:{PHONE_TEL}">{PHONE}</a> · <a href="/day/">Days 1 to 28</a></p>
+<p><a href="mailto:{EMAIL}">{EMAIL}</a> · <a href="tel:{PHONE_TEL}">{PHONE}</a> · <a href="/day/">Clean For Today: all 28 days</a></p>
 <p class="fine">Clean For Today is an independent project of Sober Elf Studio LLC. It is not affiliated with or endorsed by any twelve-step fellowship or treatment facility. It is not medical advice or a substitute for your care team.</p>
 <p class="fine">© 2026 Sober Elf Studio LLC · soberelf.com</p>
 </div></footer>
@@ -69,35 +69,47 @@ def page(path, current, title, desc, body):
 
 HOME = """<section class="hero"><div class="wrap">
 <p class="label">Clean For Today: Your First 28 Days</p>
-<h1>Something to read when the unit goes quiet.</h1>
-<p class="lead">A pocket booklet of 28 one-page reflections for people in inpatient treatment. It works without a phone or a screen, and each day is being made into a short animated video so it keeps working after discharge.</p>
-<div class="btns"><a class="btn main" href="/counselors/">For Counselors</a><a class="btn alt" href="/booklet/">Get the free PDF</a></div>
+<h1>Every day is read by someone in recovery.</h1>
+<p class="lead">28 short readings for your first days clean. Each one is spoken by a person who has been in treatment for addiction. We keep their names private. You can still hear them.</p>
+<div class="listen">
+<p class="t">Day 1: Gloves Down</p>
+<p class="s">About a minute. Music by Aaron Scharmer.</p>
+<audio controls preload="none" src="/audio/day01.mp3"></audio>
+</div>
+<div class="btns"><a class="btn main" href="/day/1/">Start at Day 1</a><a class="btn alt" href="/day/">See all 28 days</a></div>
 </div></section>
 
 <section><div class="wrap">
-<p class="label">Written from the chair</p>
+<p class="label">Why their voices</p>
+<p class="voices">Counselors, nurses, doctors and judges all want you to make it. But on night two, with your bag half packed, the voice that gets through is someone who sat in that same chair.</p>
 <p class="quote">"I've sat in that chair six times. The first five times, I thought I was the exception. Three of those times, I walked out before it was over."</p>
 <p class="sig">Dave B.</p>
 </div></section>
 
 <section><div class="wrap">
-<p class="label">Built for the unit</p>
-<h2>One page a day. No screen needed.</h2>
+<p class="label">How it works</p>
+<h2>One day at a time. Start anywhere.</h2>
 <ul class="plain">
-<li>No phone or screen needed. One page a day, about two minutes to read.</li>
-<li>The "Before You Walk Out" page asks the reader to wait an hour and tell a person before they leave.</li>
-<li>Each day is read by a different person in recovery. Day 1 is recorded, and ten more readers have agreed to record.</li>
+<li>Hear the day, then read it. About two minutes.</li>
+<li>Each day stands alone. Skip ahead, go back, take the rest home.</li>
+<li>The pocket booklet works without a phone or a screen. Its <em>Before You Walk Out</em> page is for the night you want to leave.</li>
 </ul>
-</div></section>
-
-<section><div class="wrap two">
-<a class="card" href="/dave/"><img src="/img/dave/daves_story_ep01_thumb.jpg" alt="Dave's Story, Episode 1"><div class="body"><h3>Dave's Story</h3><p>An animated series with an original score by Aaron Scharmer. Six episodes are out.</p></div></a>
-<a class="card" href="/studio/"><img src="/img/cft-card.jpg" alt="Clean For Today puppets, side by side"><div class="body"><h3>Studio</h3><p>We also make video, animation, websites and logos for treatment programs, recovery organizations and independent artists.</p></div></a>
+<div class="btns"><a class="btn alt" href="/booklet/">Get the free PDF</a></div>
 </div></section>
 
 <section><div class="wrap">
-<p class="label">Coming 2027</p>
-<p class="lead">A one-hour documentary on addiction and the brain, weaving its biology with the spiritual healing of 12-step recovery.</p>
+<p class="label">Counselors, nurses and staff</p>
+<p class="lead">Read it before your patients do, and tell us what to change. If the answer is no, or not yet, I still want your notes.</p>
+<div class="btns"><a class="btn alt" href="/counselors/">For Counselors</a></div>
+</div></section>
+
+<section><div class="wrap">
+<a class="more" href="/studio/">
+<p class="label" style="margin:0">More from Sober Elf Studio</p>
+<h2 style="margin:0">Dave's Story, the documentary and our studio work</h2>
+<p class="muted" style="margin:0">An animated series scored by Aaron Scharmer, a 2027 film on addiction and the brain, and video, animation and design for mission-driven clients.</p>
+<span class="go">Go to Studio &rarr;</span>
+</a>
 </div></section>
 """
 
@@ -182,8 +194,8 @@ BOOKLET = """<section class="hero"><div class="wrap">
 </div></section>
 
 <section><div class="wrap">
-<p class="label">Watch along</p>
-<p>Every day has its own page at soberelf.com/day. The videos are being made, and each one shows up there when it's ready.</p>
+<p class="label">Listen along</p>
+<p>Every day has its own page at soberelf.com/day, where you can hear it read by someone who has been in treatment for addiction.</p>
 <div class="btns"><a class="btn alt" href="/day/">See all 28 days</a></div>
 </div></section>
 
@@ -195,9 +207,20 @@ BOOKLET = """<section class="hero"><div class="wrap">
 
 STUDIO = f"""<section class="hero"><div class="wrap">
 <p class="label">Studio</p>
-<h1>The studio behind Clean For Today and Dave's Story.</h1>
-<p class="lead">Now taking on work for recovery organizations, treatment programs and independent artists.</p>
-<div class="btns"><a class="btn main" href="#start">Start a project</a></div>
+<h1>Dave's Story, the documentary and our studio work.</h1>
+<p class="lead">The studio behind Clean For Today. Now taking on work for recovery organizations, treatment programs and independent artists.</p>
+<div class="btns"><a class="btn main" href="/dave/">Watch Dave's Story</a><a class="btn alt" href="#start">Start a project</a></div>
+</div></section>
+
+<section><div class="wrap">
+<p class="label">Dave's Story</p>
+<p class="lead">An animated series about addiction and recovery, with an original score by Aaron Scharmer. Six episodes are out.</p>
+<div class="btns"><a class="btn alt" href="/dave/">Watch the episodes</a></div>
+</div></section>
+
+<section><div class="wrap">
+<p class="label">Coming 2027</p>
+<p class="lead">A one-hour documentary on addiction and the brain, weaving its biology with the spiritual healing of 12-step recovery.</p>
 </div></section>
 
 <section><div class="wrap">
@@ -209,7 +232,7 @@ STUDIO = f"""<section class="hero"><div class="wrap">
 <p class="label">Work</p>
 <div class="grid">
 <a class="card" href="/dave/"><img src="/img/dave/daves_story_ep01_thumb.jpg" alt="Dave's Story, Episode 1" loading="lazy"><div class="body"><h3>Dave's Story</h3><p>Animated series, 6 episodes out, original score by Aaron Scharmer.</p></div></a>
-<div class="card"><img src="/img/cft-card.jpg" alt="Clean For Today puppets, side by side" loading="lazy"><div class="body"><h3>Clean For Today</h3><p>28 animated daily reflections, in production.</p></div></div>
+<a class="card" href="/day/"><img src="/img/cft-card.jpg" alt="Clean For Today puppets, side by side" loading="lazy"><div class="body"><h3>Clean For Today</h3><p>28 daily readings, each spoken by someone who has been in treatment for addiction.</p></div></a>
 <div class="card"><div class="photo" style="border:0;border-radius:0">Aaron Scharmer Music</div><div class="body"><h3>Aaron Scharmer Music</h3><p>Website and logo, in progress.</p></div></div>
 </div>
 </div></section>

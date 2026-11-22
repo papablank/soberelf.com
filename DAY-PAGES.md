@@ -7,19 +7,17 @@ If a video moves, gets re-cut, or comes down, you change one line and every book
 1. The `day` folder lives in the root of this repo, next to `index.html`.
 2. Commit and push. After a minute, soberelf.com/day/1/ through soberelf.com/day/28/ are live.
 
-## When a video goes up
-1. Open `make_days.py` and paste the YouTube link next to that day, e.g.
-   `("Gloves Down", "https://www.youtube.com/watch?v=..."),`
-2. Run `python3 make_days.py` (it rewrites the `day` folder).
-3. Copy the new `day` folder into the repo, commit, push.
-
-When the playlist exists, paste its link into `PLAYLIST` at the top too.
+## When a recording is ready
+1. Export the day's mix (voice plus Aaron's cue) as `audio/dayNN.mp3`, 128 kbps, with every tag stripped:
+   `ffmpeg -i mix.mp4 -vn -map_metadata -1 -c:a libmp3lame -b:a 128k -id3v2_version 0 -write_id3v1 0 audio/day05.mp3`
+   The file name is the day number only. Never a reader's name.
+2. Run `python3 make_days.py`.
+3. Commit and push.
 
 ## What each page does
-- Every page shows that day's reflection written out (CFT: Online text, locked 2026-11-09).
-- Link filled in: a "Watch Day N" button at the top opens the video.
-- Link empty: a short note says the video is coming soon.
-- To change a day's words, edit SCRIPTS in make_days.py and run it again.
+- Every page shows that day's reflection written out (CFT: Online r22, matched to what each reader says).
+- Recording in place: a player, with "Every day is spoken by someone who has been in treatment for addiction. Their names stay private." under it, and "Music by Aaron Scharmer." under the reading.
+- No recording yet: a note says the recording is coming soon.
 - Every page carries the 988 line.
 - `soberelf.com/day/` lists all 28 days for counselors to bookmark.
 
