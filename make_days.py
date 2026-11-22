@@ -13,6 +13,7 @@ Run:  python3 make_days.py   (rewrites the day/ folder)
   pages can identify who scanned a QR code.
 """
 import html, os, re
+from make_site import head, top, FOOT as SITE_FOOT
 
 PLAYLIST = ""   # paste the "Clean For Today — Days 1–28" playlist link here when it exists
 
@@ -119,27 +120,30 @@ def audio_file(n):
     f = f"day{n:02d}.mp3"
     return f if os.path.exists(os.path.join(AUDIO, f)) else ""
 
-def page(title, head_extra, body):
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<meta name="referrer" content="no-referrer">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>{html.escape(title)}</title>
-{head_extra}<style>{CSS}</style>
-</head>
-<body><main>
-{body}
-</main></body>
-</html>
+DAY_CSS = """<style>
+.dayhead .listen{margin-top:18px}
+.dayhead h1{margin-bottom:6px}
+.listen .why{color:var(--muted);font-size:.98rem;margin:12px 0 0}
+.reading p{font-size:1.25rem;line-height:1.75;max-width:640px}
+.credit{color:var(--muted);font-size:.95rem}
+.pager{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.pager .btn{flex:1 1 180px}
+ol.days{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+ol.days a{display:flex;gap:14px;align-items:baseline;background:rgba(41,16,21,.7);border:1px solid rgba(138,101,69,.35);border-radius:6px;padding:14px 16px;text-decoration:none;color:var(--cream)}
+ol.days a:hover{border-color:var(--gold)}
+ol.days .n{font-family:"IM Fell English",Georgia,serif;color:var(--gold);letter-spacing:.12em;font-size:.85rem;min-width:3.6em}
+ol.days .t{font-family:"DM Serif Display",Georgia,serif;font-size:1.15rem}
+ol.days em{display:block;color:var(--muted);font-size:.9rem}
+</style>
 """
 
+def page(title, desc, body):
+    h = head(html.escape(title), html.escape(desc))
+    h = h.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex">', 1)
+    h = h.replace('</head>', DAY_CSS + '</head>', 1)
+    return h + top("/day/") + body + SITE_FOOT
+
 def day_page(n, title):
-    label = f"Day {n}: {title}"
     text = "\n".join(f"<p>{para(p)}</p>" for p in SCRIPTS[n - 1])
     mp3 = audio_file(n)
     if mp3:
@@ -148,22 +152,30 @@ def day_page(n, title):
                   'Their names stay private.</p>\n')
         credit = '<p class="credit">Music by Aaron Scharmer.</p>\n'
     else:
-        player = '<p class="soon">The recording for this day is coming soon.</p>\n'
+        player = '<p class="why">The recording for this day is coming soon. The reading is below.</p>\n'
         credit = ''
-    body = (f'<div class="hear">\n<span class="tag">Day {n}</span>\n<h1>{html.escape(title)}</h1>\n{player}</div>\n'
-            f'<div class="reading">\n{text}\n</div>\n{credit}'
-            f'<a class="btn" href="/day/">See all 28 days</a>\n{HELP}\n{FOOT}')
-    return page(f"{label} · Clean For Today", '', body)
+    prev = f'<a class="btn alt" href="/day/{n-1}/">&larr; Day {n-1}</a>' if n > 1 else ''
+    nxt = f'<a class="btn main" href="/day/{n+1}/">Day {n+1} &rarr;</a>' if n < 28 else '<a class="btn main" href="/booklet/">Get the free PDF</a>'
+    body = (f'<section class="hero dayhead"><div class="wrap">\n'
+            f'<p class="label"><a href="/day/" style="color:inherit;text-decoration:none">Clean For Today</a> &middot; Day {n} of 28</p>\n'
+            f'<h1>{html.escape(title)}</h1>\n<div class="listen">\n{player}</div>\n</div></section>\n'
+            f'<section><div class="wrap">\n<div class="reading">\n{text}\n</div>\n{credit}'
+            f'<div class="pager">{prev}{nxt}</div>\n'
+            f'<p style="margin-top:22px"><a href="/day/">See all 28 days</a> &middot; <a href="/">Home</a></p>\n'
+            f'</div></section>\n')
+    return page(f"Day {n}: {title} · Clean For Today", f"Clean For Today, Day {n}: {title}.", body)
 
 def index_page():
     items = []
-    for n, (title, url) in enumerate(VIDEOS, 1):
-        items.append(f'<li><a href="/day/{n}/">{html.escape(title)}</a>{"" if audio_file(n) else " <em>(recording coming soon)</em>"}</li>')
-    pl = (f'<a class="btn" href="{html.escape(PLAYLIST, quote=True)}">Watch all 28 in order</a>\n' if PLAYLIST else '')
-    body = (f'<span class="tag">Your first 28 days</span>\n<h1>Clean For Today</h1>\n'
-            f'<p>Every day is spoken by someone who has been in treatment for addiction. Their names stay private. One day at a time, in any order.</p>\n'
-            f'<a class="btn" href="/day/1/">Start at Day 1</a>\n{pl}<ol>\n' + "\n".join(items) + f'\n</ol>\n{HELP}\n{FOOT}')
-    return page("Clean For Today · All 28 days", '', body)
+    for n, (title, _) in enumerate(VIDEOS, 1):
+        soon = "" if audio_file(n) else "<em>Recording coming soon</em>"
+        items.append(f'<li><a href="/day/{n}/"><span class="n">Day {n}</span><span><span class="t">{html.escape(title)}</span>{soon}</span></a></li>')
+    body = ('<section class="hero"><div class="wrap">\n<p class="label">Clean For Today: Your First 28 Days</p>\n'
+            '<h1>All 28 days</h1>\n'
+            '<p class="lead">Every day is spoken by someone who has been in treatment for addiction. Their names stay private. One day at a time, in any order.</p>\n'
+            '<div class="btns"><a class="btn main" href="/day/1/">Start at Day 1</a><a class="btn alt" href="/booklet/">Get the free PDF</a></div>\n'
+            '</div></section>\n<section><div class="wrap">\n<ol class="days">\n' + "\n".join(items) + '\n</ol>\n</div></section>\n')
+    return page("Clean For Today · All 28 days", "All 28 days of Clean For Today, each read by someone who has been in treatment for addiction.", body)
 
 if __name__ == "__main__":
     assert len(VIDEOS) == 28 and len(SCRIPTS) == 28
