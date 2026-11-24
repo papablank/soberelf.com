@@ -121,19 +121,45 @@ def audio_file(n):
     return f if os.path.exists(os.path.join(AUDIO, f)) else ""
 
 DAY_CSS = """<style>
-.dayhead .listen{margin-top:18px}
-.dayhead h1{margin-bottom:6px}
-.listen .why{color:var(--muted);font-size:.98rem;margin:12px 0 0}
-.reading p{font-size:1.25rem;line-height:1.75;max-width:640px}
-.credit{color:var(--muted);font-size:.95rem}
-.pager{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
-.pager .btn{flex:1 1 180px}
-ol.days{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-ol.days a{display:flex;gap:14px;align-items:baseline;background:rgba(41,16,21,.7);border:1px solid rgba(138,101,69,.35);border-radius:6px;padding:14px 16px;text-decoration:none;color:var(--cream)}
-ol.days a:hover{border-color:var(--gold)}
-ol.days .n{font-family:"IM Fell English",Georgia,serif;color:var(--gold);letter-spacing:.12em;font-size:.85rem;min-width:3.6em}
-ol.days .t{font-family:"DM Serif Display",Georgia,serif;font-size:1.15rem}
-ol.days em{display:block;color:var(--muted);font-size:.9rem}
+@font-face{font-family:"Anton";src:url(/assets/fonts/anton-latin-400.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Oswald";src:url(/assets/fonts/oswald-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Archivo Black";src:url(/assets/fonts/archivo-black-latin-400.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Gelasio";src:url(/assets/fonts/gelasio-latin-var.woff2) format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"Gelasio";src:url(/assets/fonts/gelasio-latin-var-italic.woff2) format("woff2");font-weight:400 700;font-style:italic;font-display:swap}
+.cft{--paper:#f3f0ea;--crim:#7a1c16;--crim2:#c47070;--track:#e2cfcf;--ink:#2a1715;--soft:#6b5a57;--yel:#ffcf1f;
+  background:var(--paper) url(/img/cft-paper.jpg) repeat;background-size:640px;color:var(--ink);font-family:"Gelasio",Georgia,serif}
+.cft section{border:0;padding:44px 0}
+.cft a{color:var(--crim)}.cft a:hover{color:var(--ink)}
+.cft .tag{display:inline-block;background:var(--yel);color:#1d1a17;font:400 1.05rem/1 "Archivo Black",Arial,sans-serif;
+  letter-spacing:.02em;padding:.55rem .8rem .5rem;margin:0 0 14px}
+.cft h1{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;color:var(--crim);font-size:clamp(2.6rem,9vw,4.6rem);
+  line-height:.95;letter-spacing:.005em;margin:0;text-shadow:none;transform:scaleY(.86);transform-origin:left bottom}
+.cft h1.big{font-family:"Archivo Black",Arial,sans-serif;font-size:clamp(2.4rem,8vw,4.2rem);line-height:1;letter-spacing:-.01em;transform:none}
+.cft .prog{margin:16px 0 6px;height:5px;background:var(--track);position:relative;border-radius:1px}
+.cft .prog i{position:absolute;left:0;top:0;bottom:0;background:var(--crim)}
+.cft .meta{display:flex;justify-content:space-between;font-style:italic;color:var(--soft);font-size:1.05rem}
+.cft .meta a{color:var(--soft);text-decoration:none}
+.cft audio{width:100%;margin-top:22px}
+.cft .why{color:var(--soft);font-size:.98rem;margin:10px 0 0}
+.cft .reading p{font-size:1.28rem;line-height:1.72;max-width:660px;margin:0 0 1.1em}
+.cft .reading em{font-style:italic}
+.cft .credit{color:var(--soft);font-size:.95rem;font-style:italic}
+.cft .btn{font-family:"Archivo Black",Arial,sans-serif;letter-spacing:.04em;font-size:.9rem;border-radius:3px}
+.cft .btn.main{background:var(--crim);border-color:var(--crim);color:#fff}
+.cft .btn.main:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.cft .btn.alt{background:transparent;border:2px solid var(--crim);color:var(--crim)}
+.cft .btn.alt:hover{background:var(--crim);color:#fff}
+.cft .pager{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.cft .pager .btn{flex:1 1 180px}
+.cft .lead{color:var(--soft);font-size:1.2rem;max-width:640px}
+.cft .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.cft ol.days{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.cft ol.days a{display:block;background:rgba(255,253,247,.55);border:1px solid var(--track);border-left:6px solid var(--crim);border-radius:3px;
+  padding:12px 14px;text-decoration:none;color:var(--crim)}
+.cft ol.days a:hover{border-color:var(--crim)}
+.cft ol.days .n{display:inline-block;background:var(--yel);color:#1d1a17;font:400 .78rem/1 "Archivo Black",Arial,sans-serif;padding:.35rem .5rem;margin-bottom:8px}
+.cft ol.days .t{display:block;font:400 1.5rem/1.1 "Oswald","Anton",Impact,sans-serif;text-transform:none;letter-spacing:.01em}
+.cft ol.days em{display:block;color:var(--soft);font-size:.9rem;margin-top:4px}
 </style>
 """
 
@@ -141,7 +167,13 @@ def page(title, desc, body):
     h = head(html.escape(title), html.escape(desc))
     h = h.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<meta name="robots" content="noindex">', 1)
     h = h.replace('</head>', DAY_CSS + '</head>', 1)
-    return h + top("/day/") + body + SITE_FOOT
+    return h + top("/day/") + '<div class="cft">\n' + body + '</div>\n' + SITE_FOOT
+
+def masthead(n, title):
+    pct = round(n / 28 * 100, 2)
+    return (f'<span class="tag">DAY {n}</span>\n<h1>{html.escape(title)}</h1>\n'
+            f'<div class="prog" aria-hidden="true"><i style="width:{pct}%"></i></div>\n'
+            f'<p class="meta"><span>day {n} of 28</span><a href="/day/">Clean For Today</a></p>\n')
 
 def day_page(n, title):
     text = "\n".join(f"<p>{para(p)}</p>" for p in SCRIPTS[n - 1])
@@ -156,10 +188,8 @@ def day_page(n, title):
         credit = ''
     prev = f'<a class="btn alt" href="/day/{n-1}/">&larr; Day {n-1}</a>' if n > 1 else ''
     nxt = f'<a class="btn main" href="/day/{n+1}/">Day {n+1} &rarr;</a>' if n < 28 else '<a class="btn main" href="/booklet/">Get the free PDF</a>'
-    body = (f'<section class="hero dayhead"><div class="wrap">\n'
-            f'<p class="label"><a href="/day/" style="color:inherit;text-decoration:none">Clean For Today</a> &middot; Day {n} of 28</p>\n'
-            f'<h1>{html.escape(title)}</h1>\n<div class="listen">\n{player}</div>\n</div></section>\n'
-            f'<section><div class="wrap">\n<div class="reading">\n{text}\n</div>\n{credit}'
+    body = (f'<section><div class="wrap">\n{masthead(n, title)}{player}</div></section>\n'
+            f'<section style="padding-top:8px"><div class="wrap">\n<div class="reading">\n{text}\n</div>\n{credit}'
             f'<div class="pager">{prev}{nxt}</div>\n'
             f'<p style="margin-top:22px"><a href="/day/">See all 28 days</a> &middot; <a href="/">Home</a></p>\n'
             f'</div></section>\n')
@@ -169,12 +199,12 @@ def index_page():
     items = []
     for n, (title, _) in enumerate(VIDEOS, 1):
         soon = "" if audio_file(n) else "<em>Recording coming soon</em>"
-        items.append(f'<li><a href="/day/{n}/"><span class="n">Day {n}</span><span><span class="t">{html.escape(title)}</span>{soon}</span></a></li>')
-    body = ('<section class="hero"><div class="wrap">\n<p class="label">Clean For Today: Your First 28 Days</p>\n'
-            '<h1>All 28 days</h1>\n'
-            '<p class="lead">Every day is spoken by someone who has been in treatment for addiction. Their names stay private. One day at a time, in any order.</p>\n'
+        items.append(f'<li><a href="/day/{n}/"><span class="n">DAY {n}</span><span class="t">{html.escape(title)}</span>{soon}</a></li>')
+    body = ('<section><div class="wrap">\n<span class="tag">YOUR FIRST 28 DAYS</span>\n<h1>Clean For Today</h1>\n'
+            '<div class="prog" aria-hidden="true"><i style="width:100%"></i></div>\n'
+            '<p class="lead" style="margin-top:18px">Every day is spoken by someone who has been in treatment for addiction. Their names stay private. One day at a time, in any order.</p>\n'
             '<div class="btns"><a class="btn main" href="/day/1/">Start at Day 1</a><a class="btn alt" href="/booklet/">Get the free PDF</a></div>\n'
-            '</div></section>\n<section><div class="wrap">\n<ol class="days">\n' + "\n".join(items) + '\n</ol>\n</div></section>\n')
+            '</div></section>\n<section style="padding-top:8px"><div class="wrap">\n<ol class="days">\n' + "\n".join(items) + '\n</ol>\n</div></section>\n')
     return page("Clean For Today · All 28 days", "All 28 days of Clean For Today, each read by someone who has been in treatment for addiction.", body)
 
 if __name__ == "__main__":

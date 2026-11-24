@@ -13,19 +13,45 @@
 <link rel="stylesheet" href="/assets/site.css">
 <title>Clean For Today · All 28 days</title>
 <style>
-.dayhead .listen{margin-top:18px}
-.dayhead h1{margin-bottom:6px}
-.listen .why{color:var(--muted);font-size:.98rem;margin:12px 0 0}
-.reading p{font-size:1.25rem;line-height:1.75;max-width:640px}
-.credit{color:var(--muted);font-size:.95rem}
-.pager{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
-.pager .btn{flex:1 1 180px}
-ol.days{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-ol.days a{display:flex;gap:14px;align-items:baseline;background:rgba(41,16,21,.7);border:1px solid rgba(138,101,69,.35);border-radius:6px;padding:14px 16px;text-decoration:none;color:var(--cream)}
-ol.days a:hover{border-color:var(--gold)}
-ol.days .n{font-family:"IM Fell English",Georgia,serif;color:var(--gold);letter-spacing:.12em;font-size:.85rem;min-width:3.6em}
-ol.days .t{font-family:"DM Serif Display",Georgia,serif;font-size:1.15rem}
-ol.days em{display:block;color:var(--muted);font-size:.9rem}
+@font-face{font-family:"Anton";src:url(/assets/fonts/anton-latin-400.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Oswald";src:url(/assets/fonts/oswald-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Archivo Black";src:url(/assets/fonts/archivo-black-latin-400.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Gelasio";src:url(/assets/fonts/gelasio-latin-var.woff2) format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"Gelasio";src:url(/assets/fonts/gelasio-latin-var-italic.woff2) format("woff2");font-weight:400 700;font-style:italic;font-display:swap}
+.cft{--paper:#f3f0ea;--crim:#7a1c16;--crim2:#c47070;--track:#e2cfcf;--ink:#2a1715;--soft:#6b5a57;--yel:#ffcf1f;
+  background:var(--paper) url(/img/cft-paper.jpg) repeat;background-size:640px;color:var(--ink);font-family:"Gelasio",Georgia,serif}
+.cft section{border:0;padding:44px 0}
+.cft a{color:var(--crim)}.cft a:hover{color:var(--ink)}
+.cft .tag{display:inline-block;background:var(--yel);color:#1d1a17;font:400 1.05rem/1 "Archivo Black",Arial,sans-serif;
+  letter-spacing:.02em;padding:.55rem .8rem .5rem;margin:0 0 14px}
+.cft h1{font-family:"Anton",Impact,sans-serif;text-transform:uppercase;color:var(--crim);font-size:clamp(2.6rem,9vw,4.6rem);
+  line-height:.95;letter-spacing:.005em;margin:0;text-shadow:none;transform:scaleY(.86);transform-origin:left bottom}
+.cft h1.big{font-family:"Archivo Black",Arial,sans-serif;font-size:clamp(2.4rem,8vw,4.2rem);line-height:1;letter-spacing:-.01em;transform:none}
+.cft .prog{margin:16px 0 6px;height:5px;background:var(--track);position:relative;border-radius:1px}
+.cft .prog i{position:absolute;left:0;top:0;bottom:0;background:var(--crim)}
+.cft .meta{display:flex;justify-content:space-between;font-style:italic;color:var(--soft);font-size:1.05rem}
+.cft .meta a{color:var(--soft);text-decoration:none}
+.cft audio{width:100%;margin-top:22px}
+.cft .why{color:var(--soft);font-size:.98rem;margin:10px 0 0}
+.cft .reading p{font-size:1.28rem;line-height:1.72;max-width:660px;margin:0 0 1.1em}
+.cft .reading em{font-style:italic}
+.cft .credit{color:var(--soft);font-size:.95rem;font-style:italic}
+.cft .btn{font-family:"Archivo Black",Arial,sans-serif;letter-spacing:.04em;font-size:.9rem;border-radius:3px}
+.cft .btn.main{background:var(--crim);border-color:var(--crim);color:#fff}
+.cft .btn.main:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.cft .btn.alt{background:transparent;border:2px solid var(--crim);color:var(--crim)}
+.cft .btn.alt:hover{background:var(--crim);color:#fff}
+.cft .pager{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.cft .pager .btn{flex:1 1 180px}
+.cft .lead{color:var(--soft);font-size:1.2rem;max-width:640px}
+.cft .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.cft ol.days{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.cft ol.days a{display:block;background:rgba(255,253,247,.55);border:1px solid var(--track);border-left:6px solid var(--crim);border-radius:3px;
+  padding:12px 14px;text-decoration:none;color:var(--crim)}
+.cft ol.days a:hover{border-color:var(--crim)}
+.cft ol.days .n{display:inline-block;background:var(--yel);color:#1d1a17;font:400 .78rem/1 "Archivo Black",Arial,sans-serif;padding:.35rem .5rem;margin-bottom:8px}
+.cft ol.days .t{display:block;font:400 1.5rem/1.1 "Oswald","Anton",Impact,sans-serif;text-transform:none;letter-spacing:.01em}
+.cft ol.days em{display:block;color:var(--soft);font-size:.9rem;margin-top:4px}
 </style>
 </head>
 <body>
@@ -35,44 +61,47 @@ ol.days em{display:block;color:var(--muted);font-size:.9rem}
 <nav aria-label="Main"><a href="/day/" aria-current="page">The 28 Days</a><a href="/booklet/">Free PDF</a><a href="/counselors/">For Counselors</a><a href="/studio/">Studio</a><a href="/about/">About</a></nav>
 </div></header>
 <main id="main">
-<section class="hero"><div class="wrap">
-<p class="label">Clean For Today: Your First 28 Days</p>
-<h1>All 28 days</h1>
-<p class="lead">Every day is spoken by someone who has been in treatment for addiction. Their names stay private. One day at a time, in any order.</p>
+<div class="cft">
+<section><div class="wrap">
+<span class="tag">YOUR FIRST 28 DAYS</span>
+<h1>Clean For Today</h1>
+<div class="prog" aria-hidden="true"><i style="width:100%"></i></div>
+<p class="lead" style="margin-top:18px">Every day is spoken by someone who has been in treatment for addiction. Their names stay private. One day at a time, in any order.</p>
 <div class="btns"><a class="btn main" href="/day/1/">Start at Day 1</a><a class="btn alt" href="/booklet/">Get the free PDF</a></div>
 </div></section>
-<section><div class="wrap">
+<section style="padding-top:8px"><div class="wrap">
 <ol class="days">
-<li><a href="/day/1/"><span class="n">Day 1</span><span><span class="t">Gloves Down</span></span></a></li>
-<li><a href="/day/2/"><span class="n">Day 2</span><span><span class="t">Forever Is Too Heavy</span></span></a></li>
-<li><a href="/day/3/"><span class="n">Day 3</span><span><span class="t">The Chair</span></span></a></li>
-<li><a href="/day/4/"><span class="n">Day 4</span><span><span class="t">The Heaviest Phone</span></span></a></li>
-<li><a href="/day/5/"><span class="n">Day 5</span><span><span class="t">Clean Isn&#x27;t Numb</span><em>Recording coming soon</em></span></a></li>
-<li><a href="/day/6/"><span class="n">Day 6</span><span><span class="t">Small Things</span></span></a></li>
-<li><a href="/day/7/"><span class="n">Day 7</span><span><span class="t">Still Here</span></span></a></li>
-<li><a href="/day/8/"><span class="n">Day 8</span><span><span class="t">Wreckage</span></span></a></li>
-<li><a href="/day/9/"><span class="n">Day 9</span><span><span class="t">Hope</span></span></a></li>
-<li><a href="/day/10/"><span class="n">Day 10</span><span><span class="t">Letting Go</span></span></a></li>
-<li><a href="/day/11/"><span class="n">Day 11</span><span><span class="t">Just One</span></span></a></li>
-<li><a href="/day/12/"><span class="n">Day 12</span><span><span class="t">It Passes</span></span></a></li>
-<li><a href="/day/13/"><span class="n">Day 13</span><span><span class="t">Open Mind</span></span></a></li>
-<li><a href="/day/14/"><span class="n">Day 14</span><span><span class="t">Willing</span></span></a></li>
-<li><a href="/day/15/"><span class="n">Day 15</span><span><span class="t">Halt</span></span></a></li>
-<li><a href="/day/16/"><span class="n">Day 16</span><span><span class="t">The Tape</span></span></a></li>
-<li><a href="/day/17/"><span class="n">Day 17</span><span><span class="t">Fear</span></span></a></li>
-<li><a href="/day/18/"><span class="n">Day 18</span><span><span class="t">The Coffee</span></span></a></li>
-<li><a href="/day/19/"><span class="n">Day 19</span><span><span class="t">Alone</span></span></a></li>
-<li><a href="/day/20/"><span class="n">Day 20</span><span><span class="t">Old Roads</span></span></a></li>
-<li><a href="/day/21/"><span class="n">Day 21</span><span><span class="t">Progress</span></span></a></li>
-<li><a href="/day/22/"><span class="n">Day 22</span><span><span class="t">Shame</span></span></a></li>
-<li><a href="/day/23/"><span class="n">Day 23</span><span><span class="t">The Mirror</span></span></a></li>
-<li><a href="/day/24/"><span class="n">Day 24</span><span><span class="t">The Plan</span></span></a></li>
-<li><a href="/day/25/"><span class="n">Day 25</span><span><span class="t">Earning It Back</span></span></a></li>
-<li><a href="/day/26/"><span class="n">Day 26</span><span><span class="t">Saturday Night</span></span></a></li>
-<li><a href="/day/27/"><span class="n">Day 27</span><span><span class="t">Grateful Anyway</span></span></a></li>
-<li><a href="/day/28/"><span class="n">Day 28</span><span><span class="t">Pass It On</span></span></a></li>
+<li><a href="/day/1/"><span class="n">DAY 1</span><span class="t">Gloves Down</span></a></li>
+<li><a href="/day/2/"><span class="n">DAY 2</span><span class="t">Forever Is Too Heavy</span></a></li>
+<li><a href="/day/3/"><span class="n">DAY 3</span><span class="t">The Chair</span></a></li>
+<li><a href="/day/4/"><span class="n">DAY 4</span><span class="t">The Heaviest Phone</span></a></li>
+<li><a href="/day/5/"><span class="n">DAY 5</span><span class="t">Clean Isn&#x27;t Numb</span><em>Recording coming soon</em></a></li>
+<li><a href="/day/6/"><span class="n">DAY 6</span><span class="t">Small Things</span></a></li>
+<li><a href="/day/7/"><span class="n">DAY 7</span><span class="t">Still Here</span></a></li>
+<li><a href="/day/8/"><span class="n">DAY 8</span><span class="t">Wreckage</span></a></li>
+<li><a href="/day/9/"><span class="n">DAY 9</span><span class="t">Hope</span></a></li>
+<li><a href="/day/10/"><span class="n">DAY 10</span><span class="t">Letting Go</span></a></li>
+<li><a href="/day/11/"><span class="n">DAY 11</span><span class="t">Just One</span></a></li>
+<li><a href="/day/12/"><span class="n">DAY 12</span><span class="t">It Passes</span></a></li>
+<li><a href="/day/13/"><span class="n">DAY 13</span><span class="t">Open Mind</span></a></li>
+<li><a href="/day/14/"><span class="n">DAY 14</span><span class="t">Willing</span></a></li>
+<li><a href="/day/15/"><span class="n">DAY 15</span><span class="t">Halt</span></a></li>
+<li><a href="/day/16/"><span class="n">DAY 16</span><span class="t">The Tape</span></a></li>
+<li><a href="/day/17/"><span class="n">DAY 17</span><span class="t">Fear</span></a></li>
+<li><a href="/day/18/"><span class="n">DAY 18</span><span class="t">The Coffee</span></a></li>
+<li><a href="/day/19/"><span class="n">DAY 19</span><span class="t">Alone</span></a></li>
+<li><a href="/day/20/"><span class="n">DAY 20</span><span class="t">Old Roads</span></a></li>
+<li><a href="/day/21/"><span class="n">DAY 21</span><span class="t">Progress</span></a></li>
+<li><a href="/day/22/"><span class="n">DAY 22</span><span class="t">Shame</span></a></li>
+<li><a href="/day/23/"><span class="n">DAY 23</span><span class="t">The Mirror</span></a></li>
+<li><a href="/day/24/"><span class="n">DAY 24</span><span class="t">The Plan</span></a></li>
+<li><a href="/day/25/"><span class="n">DAY 25</span><span class="t">Earning It Back</span></a></li>
+<li><a href="/day/26/"><span class="n">DAY 26</span><span class="t">Saturday Night</span></a></li>
+<li><a href="/day/27/"><span class="n">DAY 27</span><span class="t">Grateful Anyway</span></a></li>
+<li><a href="/day/28/"><span class="n">DAY 28</span><span class="t">Pass It On</span></a></li>
 </ol>
 </div></section>
+</div>
 </main>
 <footer><div class="wrap">
 <p class="help"><strong>If a feeling includes wanting to die or hurt yourself, that is an emergency.</strong> Tell someone now, or call or text <a href="tel:988">988</a>.</p>
