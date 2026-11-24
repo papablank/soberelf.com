@@ -13,7 +13,7 @@ EMAIL = "dave@soberelf.com"
 PHONE = "715-622-0011"
 PHONE_TEL = "+17156220011"
 
-NAV = [("/day/", "The 28 Days"), ("/booklet/", "Free PDF"), ("/counselors/", "For Counselors"),
+NAV = [("/day/", "Clean For Today"), ("/booklet/", "Free PDF"), ("/counselors/", "For Counselors"),
        ("/studio/", "Studio"), ("/about/", "About")]
 
 
