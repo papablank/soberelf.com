@@ -15,7 +15,7 @@ If a video moves, gets re-cut, or comes down, you change one line and every book
 3. Commit and push.
 
 ## What each page does
-- Every page shows that day's reflection written out (CFT: Online r22, matched to what each reader says).
+- Every page shows that day's reflection written out (CFT: Online r23, matched to what each reader says).
 - Recording in place: a player, with "Every day is spoken by someone who has been in treatment for addiction. Their names stay private." under it, and "Music by Aaron Scharmer." under the reading.
 - No recording yet: a note says the recording is coming soon.
 - Every page carries the 988 line.
