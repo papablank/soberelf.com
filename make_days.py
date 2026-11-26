@@ -17,7 +17,8 @@ from make_site import head, top, FOOT as SITE_FOOT
 
 PLAYLIST = ""   # paste the "Clean For Today — Days 1–28" playlist link here when it exists
 
-# (title, unused). Titles only. The recording comes from audio/dayNN.mp3.
+# (title, YouTube video ID). The recording comes from audio/dayNN.mp3. A video ID adds a plain
+# "Watch Day N on YouTube" link (no embed: nothing loads from YouTube unless the visitor taps it).
 VIDEOS = [
     ("Gloves Down", ""),
     ("Forever Is Too Heavy", ""),
@@ -179,9 +180,12 @@ def day_page(n, title):
     text = "\n".join(f"<p>{para(p)}</p>" for p in SCRIPTS[n - 1])
     mp3 = audio_file(n)
     if mp3:
+        yt = VIDEOS[n - 1][1].strip()
+        ytl = (f'<p class="why"><a href="https://www.youtube.com/watch?v={html.escape(yt)}">Watch Day {n} on YouTube</a></p>\n'
+               if yt else '')
         player = (f'<audio controls preload="none" src="/audio/{mp3}"></audio>\n'
                   '<p class="why">Every day is spoken by someone who has been in treatment for addiction. '
-                  'Their names stay private.</p>\n')
+                  'Their names stay private.</p>\n' + ytl)
         credit = '<p class="credit">Music by Aaron Scharmer.</p>\n'
     else:
         player = '<p class="why">The recording for this day is coming soon. The reading is below.</p>\n'
