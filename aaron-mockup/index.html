@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Aaron Scharmer (mockup r7)</title>
+<title>Aaron Scharmer (mockup r8)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%230b0a09'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Jost,Futura,Arial,sans-serif' font-weight='500' font-size='34' fill='%23F2EADB'%3EAS%3C/text%3E%3C/svg%3E">
@@ -12,7 +12,7 @@
 <style>
 /* VOICE: quiet, nocturnal, humble. The place and the hands matter more than the face.
    IDEA: a strip of film frames. Scroll down and the strip slides sideways (Arnalds). Click a frame and it grows into its room.
-   PICTURE: full-bleed frames, edge to edge, one per screen. Greenery and people from Adobe Stock (previews until licensed).
+   PICTURE: full-bleed frames, edge to edge, each new one slides over the last (layered, Richter). Greenery and people from Adobe Stock (previews until licensed).
    COLOUR and TYPE: night #0d0a07, paper #f2eadb, sepia #b89a72. Jost for words, Courier Prime for the small labels Aaron asked for.
    LAYOUT: desktop is a horizontal strip. Phone stacks the same frames vertically. Rooms open as full-screen panels that slide over each other. */
 :root{color-scheme:dark;--night:#0d0a07;--ink:#f2eadb;--dim:rgba(242,234,219,.68);--line:rgba(242,234,219,.24);--sepia:#b89a72;--mono:'Courier Prime','Courier New',monospace;--ease:cubic-bezier(.65,0,.2,1)}
@@ -38,7 +38,7 @@ nav button:hover{text-decoration:underline;text-underline-offset:5px}
 /* the strip: full-bleed frames, edge to edge */
 .stage{position:relative;z-index:1}
 .track{display:flex;flex-direction:column}
-.intro,.frame{position:relative;flex:0 0 auto;width:100vw;height:100svh;overflow:hidden}
+.intro,.frame{position:sticky;top:0;flex:0 0 auto;width:100vw;height:100svh;overflow:hidden;background:#0d0a07}
 .intro{display:flex;flex-direction:column;justify-content:center;padding:0 9vw}
 .intro .big{font:300 clamp(20px,6vw,52px)/1.2 'Jost',sans-serif;text-transform:uppercase;letter-spacing:.14em;margin:0 0 26px;white-space:nowrap;color:#f2eadb}
 .ph{font:12px var(--mono);color:var(--sepia)}
@@ -59,8 +59,8 @@ nav button:hover{text-decoration:underline;text-underline-offset:5px}
 
 @media (min-width:900px) and (pointer:fine){
   body.h{overflow:hidden;height:100vh}
-  body.h .track{position:fixed;top:0;left:0;height:100vh;flex-direction:row;will-change:transform}
-  body.h .intro,body.h .frame{height:100vh}
+  body.h .track{position:fixed;inset:0;height:100vh}
+  body.h .intro,body.h .frame{position:absolute;inset:0;height:100vh;will-change:transform;transform-origin:30% 50%;box-shadow:-40px 0 80px rgba(0,0,0,.55);background:#0d0a07}
   body.h .bar{display:block;position:fixed;z-index:20;left:9vw;right:9vw;bottom:44px;height:1px;background:rgba(242,234,219,.2)}
   body.h .bar i{display:block;height:100%;width:0;background:#f2eadb}
 }
@@ -131,7 +131,7 @@ nav button:hover{text-decoration:underline;text-underline-offset:5px}
   <div id="roomBody"></div>
 </div>
 
-<p class="mock">Mockup r7 by Sober Elf Studio · not public · placeholders marked in sepia</p>
+<p class="mock">Mockup r8 by Sober Elf Studio · not public · placeholders marked in sepia</p>
 
 <script>
 {
@@ -177,17 +177,25 @@ const desk=matchMedia('(min-width:900px) and (pointer:fine)');
 
 /* horizontal strip on desktop */
 let x=0, tx=0, max=0, dragging=false, moved=0, sx=0, sxx=0;
-function measure(){max=Math.max(0,track.scrollWidth-innerWidth);tx=Math.min(tx,max);track.style.setProperty('--tw',track.scrollWidth+'px');}
+const panes=[...track.querySelectorAll('.intro,.frame')];
+panes.forEach((el,i)=>{el.style.zIndex=i+1;});
+function measure(){max=(panes.length-1)*innerWidth;tx=Math.min(tx,max);}
 function mode(){
   body.classList.toggle('h',desk.matches);
-  if(!desk.matches){track.style.transform='';x=tx=0;}
+  if(!desk.matches){panes.forEach(el=>{el.style.transform='';el.style.filter='';});x=tx=0;}
   measure();
 }
 desk.addEventListener('change',mode); addEventListener('resize',measure); addEventListener('load',measure); mode();
 function tick(){
   if(desk.matches){
     x+= (tx-x)*(reduce?1:.09);
-    track.style.transform=`translate3d(${-x}px,0,0)`;
+    const W=innerWidth, p=x/W;
+    panes.forEach((el,i)=>{
+      const inn=Math.min(1,Math.max(0,i-p));      /* 1 = waiting off right, 0 = in place */
+      const under=Math.min(1,Math.max(0,p-i));    /* how far the next pane has covered this one */
+      el.style.transform=`translate3d(${inn*W}px,0,0) scale(${1-under*.08})`;
+      el.style.filter=under>0?`brightness(${1-under*.55})`:'';
+    });
     prog.style.width=(max?x/max*100:0)+'%';
   }
   requestAnimationFrame(tick);

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aaron Scharmer (mockup r7)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%230b0a09'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Jost,Futura,Arial,sans-serif' font-weight='500' font-size='34' fill='%23F2EADB'%3EAS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: quiet, nocturnal, humble. The place and the hands matter more than the face.
+   IDEA: a strip of film frames. Scroll down and the strip slides sideways (Arnalds). Click a frame and it grows into its room.
+   PICTURE: full-bleed frames, edge to edge, one per screen. Greenery and people from Adobe Stock (previews until licensed).
+   COLOUR and TYPE: night #0d0a07, paper #f2eadb, sepia #b89a72. Jost for words, Courier Prime for the small labels Aaron asked for.
+   LAYOUT: desktop is a horizontal strip. Phone stacks the same frames vertically. Rooms open as full-screen panels that slide over each other. */
+:root{color-scheme:dark;--night:#0d0a07;--ink:#f2eadb;--dim:rgba(242,234,219,.68);--line:rgba(242,234,219,.24);--sepia:#b89a72;--mono:'Courier Prime','Courier New',monospace;--ease:cubic-bezier(.65,0,.2,1)}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0;background:var(--night);color:var(--ink)}
+body{font:400 16px/1.6 'Jost',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+img{display:block}
+.mono{font-family:var(--mono)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+
+/* chrome */
+.mock{position:fixed;z-index:40;left:0;right:0;bottom:0;padding:5px 12px;font:11px/1.4 var(--mono);text-align:center;color:var(--dim);background:rgba(13,10,7,.8);border-top:1px solid var(--line)}
+header{position:fixed;z-index:30;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:22px clamp(18px,4vw,56px);mix-blend-mode:difference;color:#f2eadb;pointer-events:none}
+header a,header button{pointer-events:auto}
+.wordmark{font:400 clamp(17px,1.6vw,22px)/1 'Jost',sans-serif;letter-spacing:.08em;text-decoration:none;white-space:nowrap}
+.wordmark i{font-style:normal;opacity:.6}
+nav{display:flex;gap:clamp(12px,2vw,28px);flex-wrap:wrap}
+nav button{font:13px var(--mono);letter-spacing:.04em;padding:10px 0;min-height:44px}
+nav button:hover{text-decoration:underline;text-underline-offset:5px}
+
+/* the strip: full-bleed frames, edge to edge */
+.stage{position:relative;z-index:1}
+.track{display:flex;flex-direction:column}
+.intro,.frame{position:relative;flex:0 0 auto;width:100vw;height:100svh;overflow:hidden}
+.intro{display:flex;flex-direction:column;justify-content:center;padding:0 9vw}
+.intro .big{font:300 clamp(20px,6vw,52px)/1.2 'Jost',sans-serif;text-transform:uppercase;letter-spacing:.14em;margin:0 0 26px;white-space:nowrap;color:#f2eadb}
+.ph{font:12px var(--mono);color:var(--sepia)}
+.hint{font:13px var(--mono);color:var(--dim);margin-top:26px;display:block}
+.frame{display:block;padding:0;text-align:center;color:#f2eadb}
+.frame figure{position:absolute;inset:0;margin:0;background:#1a130d}
+.frame figure img,.frame figure video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.frame:hover figure img,.frame:hover figure video{transform:scale(1.03)}
+.frame.soft figure img{filter:blur(14px) grayscale(1) sepia(.35) brightness(.85);transform:scale(1.12)}
+.frame.soft:hover figure img{transform:scale(1.15)}
+.frame figure::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(13,10,7,.05) 30%,rgba(13,10,7,.55) 100%)}
+.frame .cap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;pointer-events:none}
+.frame h2{margin:0;font:300 clamp(22px,3vw,46px)/1.1 'Jost',sans-serif;text-transform:uppercase;letter-spacing:.18em;text-shadow:0 2px 30px rgba(0,0,0,.55)}
+.frame .k{font:13px var(--mono);letter-spacing:.08em;text-shadow:0 1px 10px #000}
+.n{position:absolute;top:84px;left:clamp(18px,4vw,56px);font:11px var(--mono);color:#f2eadb;opacity:.7;letter-spacing:.1em;z-index:2}
+.frame .ph{position:absolute;left:0;right:0;bottom:56px;text-shadow:0 1px 6px #000;z-index:2}
+.bar{display:none}
+
+@media (min-width:900px) and (pointer:fine){
+  body.h{overflow:hidden;height:100vh}
+  body.h .track{position:fixed;top:0;left:0;height:100vh;flex-direction:row;will-change:transform}
+  body.h .intro,body.h .frame{height:100vh}
+  body.h .bar{display:block;position:fixed;z-index:20;left:9vw;right:9vw;bottom:44px;height:1px;background:rgba(242,234,219,.2)}
+  body.h .bar i{display:block;height:100%;width:0;background:#f2eadb}
+}
+/* tethered zoom and rooms */
+.zoom{position:fixed;z-index:50;background:#1a130d center/cover no-repeat;transition:left .75s var(--ease),top .75s var(--ease),width .75s var(--ease),height .75s var(--ease)}
+.room{position:fixed;inset:0;z-index:45;overflow-y:auto;background:var(--night);opacity:0;transition:opacity .35s ease}
+.room.in{opacity:1}
+.room[hidden]{display:none}
+.panel{position:sticky;top:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px 6vw 70px;background:var(--night) center/cover no-repeat;box-shadow:0 -24px 60px rgba(0,0,0,.55)}
+.panel.img::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,10,7,.25),rgba(13,10,7,.72))}
+.panel > *{position:relative}
+.panel h3{font:300 clamp(34px,5vw,72px)/1.05 'Jost',sans-serif;margin:0 0 14px;text-wrap:balance}
+.panel p{color:var(--dim);max-width:60ch;margin:0 auto 12px;font-size:17px}
+.panel .go{font:14px var(--mono);letter-spacing:.06em;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;padding:0 6px}
+.panel .go:hover{text-decoration:underline;text-underline-offset:5px}
+.back{position:fixed;z-index:60;top:18px;right:clamp(18px,4vw,56px);font:13px var(--mono);min-height:44px;padding:0 6px;color:var(--ink);mix-blend-mode:difference}
+.flow{width:min(1000px,100%);height:auto;margin:10px auto 0}
+.flow text{font-family:var(--mono);fill:var(--ink);font-size:15px}
+.flow .small{font-size:12px;fill:var(--dim)}
+.flow .box{fill:none;stroke:var(--ink);stroke-width:1.4}
+.flow .wire{fill:none;stroke:var(--sepia);stroke-width:1.4}
+.row{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 16px;width:100%;max-width:1100px;cursor:grab}
+.row::-webkit-scrollbar{height:4px}.row::-webkit-scrollbar-thumb{background:var(--line)}
+.strip{flex:0 0 min(300px,78vw);scroll-snap-align:start;text-align:left}
+.strip .sw{aspect-ratio:16/9;overflow:hidden;background:#1a130d}
+.strip .sw video,.strip .sw img{width:100%;height:100%;object-fit:cover}
+.strip b{display:block;margin-top:10px;font-weight:400;font-size:17px}
+.strip small{display:block;font:12px var(--mono);color:var(--dim)}
+.rowctl{display:flex;gap:18px;justify-content:center;margin-top:6px}
+.rowctl button{font:13px var(--mono);min-height:44px;padding:0 8px}
+.mail{font:300 clamp(22px,3vw,40px)/1.2 'Jost',sans-serif;word-break:break-all}
+@media (prefers-reduced-motion:reduce){.zoom,.room,.frame figure img{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <a class="wordmark" href="#" id="home">[ <i>:</i> aaron scharmer ]</a>
+  <nav aria-label="Rooms">
+    <button data-open="listen">listen</button>
+    <button data-open="studio">studio</button>
+    <button data-open="recordings">recordings</button>
+    <button data-open="about">about</button>
+    <button data-open="contact">contact</button>
+  </nav>
+</header>
+
+<main class="stage">
+  <div class="track" id="track">
+    <div class="intro"><span class="n">01</span>
+      <p class="big">Not new sounds.<br>New ears<br>for the room.</p>
+      <span class="ph">placeholder statement, inspired by Proust, for Aaron to replace</span>
+      <span class="hint" id="hint">[ keep scrolling ]</span>
+    </div>
+
+    <button class="frame " data-open="listen"><figure><video src="video/hands-01.mp4" muted loop playsinline autoplay preload="metadata" poster="img/hands-poster.jpg"></video></figure><span class="n">02</span><span class="cap"><h2>the hands</h2><span class="k">[ listen ]</span></span></button>
+    <button class="frame soft" data-open="listen"><figure><img src="img/lamp.jpg" alt="Green leaves moving, out of focus"><span class="ph">placeholder: moving greenery, Adobe Stock 302851538, once licensed</span></figure><span class="n">03</span><span class="cap"><h2>quiet enough to hear it</h2><span class="k">[ listen ]</span></span></button>
+    <button class="frame " data-open="studio"><figure><img src="img/shelves.jpg" alt="Bookshelves, a small synth and a hanging lamp in the Catbird studio"></figure><span class="n">04</span><span class="cap"><h2>catbird, stevens point</h2><span class="k">[ studio ]</span></span></button>
+    <button class="frame " data-open="recordings"><figure><video src="video/hands-03.mp4" muted loop playsinline autoplay preload="metadata" poster="img/hands-still-3.jpg"></video></figure><span class="n">05</span><span class="cap"><h2>slow hands</h2><span class="k">[ recordings ]</span></span></button>
+    <button class="frame soft" data-open="about"><figure><img src="img/hands-still-1.jpg" alt="People walking on a street, out of focus"><span class="ph">placeholder: people walking, Adobe Stock 511194835, once licensed</span></figure><span class="n">06</span><span class="cap"><h2>for the room</h2><span class="k">[ about ]</span></span></button>
+    <button class="frame " data-open="about"><figure><img src="img/park-fog.jpg" alt="A blurred figure on a park bench in autumn fog"></figure><span class="n">07</span><span class="cap"><h2>aaron scharmer</h2><span class="k">[ about ]</span></span></button>
+    <button class="frame " data-open="contact"><figure><video src="video/hands-02.mp4" muted loop playsinline autoplay preload="metadata" poster="img/hands-still-1.jpg"></video></figure><span class="n">08</span><span class="cap"><h2>write to aaron</h2><span class="k">[ contact ]</span></span></button>
+  </div>
+</main>
+<div class="bar" aria-hidden="true"><i id="prog"></i></div>
+
+<div class="room" id="room" hidden role="dialog" aria-modal="true" aria-labelledby="roomTitle">
+  <button class="back" id="back">[ back ]</button>
+  <div id="roomBody"></div>
+</div>
+
+<p class="mock">Mockup r7 by Sober Elf Studio · not public · placeholders marked in sepia</p>
+
+<script>
+{
+const rooms={
+  listen:{img:'img/upright-bars.jpg',panels:[
+    {bg:'img/upright-bars.jpg',h:'original cooper no. 6',p:'with waveform',go:'[ watch ]',ph:'link from @aaronscharmer once Dave has access'},
+    {bg:'img/hands-still-1.jpg',h:'original cooper no. 5',go:'[ watch ]',ph:'link to come'},
+    {bg:'img/hands-still-3.jpg',h:'slow hands',p:'studies at a quarter speed',go:'[ watch ]',ph:'link to come'}]},
+  studio:{img:'img/shelves.jpg',panels:[
+    {bg:'img/nord-keys.jpg',h:'the cockpit',p:'nord electro 5d · logic pro · kontakt 8 · vertikal'},
+    {flow:true,h:'signal flow',ph:'sketch for the mockup. Aaron to check every box before it goes live.'},
+    {bg:'img/lamp.jpg',h:'catbird',p:'the converted garage studio in stevens point, where other players come to play'}]},
+  recordings:{img:'img/hands-poster.jpg',panels:[{row:true,h:'recordings'}]},
+  about:{img:'img/hands-cuffs.jpg',panels:[
+    {bg:'img/hands-cuffs.jpg',h:'aaron scharmer',p:'pianist and composer'},
+    {h:'about',p:'He plays classical and film scores, and writes his own piano and synthesizer pieces. He scored the animated series Dave’s Story.',ph:'bio placeholder. Aaron to write his own.'}]},
+  contact:{img:'img/nord-keys.jpg',panels:[
+    {bg:'img/lamp.jpg',h:'contact',mail:'aaronscharmer@gmail.com',yt:'https://www.youtube.com/@aaronscharmer',p:'site by Sober Elf Studio'}]}
+};
+const strips=[
+  ['video/hands-01.mp4','slow hands, study 1','1/4 speed · from a 120 fps take'],
+  ['video/hands-02.mp4','slow hands, study 2','1/4 speed · from a 120 fps take'],
+  ['video/hands-03.mp4','slow hands, study 3','1/4 speed · from a 120 fps take'],
+  ['img/hands-still-1.jpg','original cooper no. 5','link to come'],
+  ['img/upright-bars.jpg','original cooper no. 6','with waveform · link to come'],
+  ['','the winter set','one continuous set · coming']];
+const flowSVG=`<svg class="flow" viewBox="0 0 1000 200" role="img" aria-label="Signal flow: Nord Electro 5D sends MIDI to Logic Pro with Kontakt 8 and Vertikal, then audio to the CQ-12T mixer, the room speakers, and you."><defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 1 L9 5 L0 9" fill="none" stroke="#b89a72" stroke-width="1.4"/></marker></defs><rect class="box" x="10" y="60" width="170" height="80"/><rect class="box" x="240" y="60" width="200" height="80"/><rect class="box" x="500" y="60" width="170" height="80"/><rect class="box" x="730" y="60" width="110" height="80"/><circle class="box" cx="925" cy="100" r="44"/><path class="wire" d="M180 100 C200 85 220 115 238 100" marker-end="url(#arr)"/><path class="wire" d="M440 100 C460 115 480 85 498 100" marker-end="url(#arr)"/><path class="wire" d="M670 100 C690 85 710 115 728 100" marker-end="url(#arr)"/><path class="wire" d="M840 100 C855 115 868 85 879 100" marker-end="url(#arr)"/><text x="28" y="94">NORD ELECTRO 5D</text><text class="small" x="28" y="116">keys · midi out</text><text x="258" y="94">LOGIC PRO</text><text class="small" x="258" y="116">kontakt 8 · vertikal</text><text x="518" y="94">CQ-12T</text><text class="small" x="518" y="116">the mixer</text><text x="748" y="94">ROOM</text><text class="small" x="748" y="116">speakers</text><text x="902" y="105">YOU</text></svg>`;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const panelHTML=(q,i)=>{
+  let inner=`<h3${i===0?' id="roomTitle"':''}>${esc(q.h)}</h3>`;
+  if(q.p) inner+=`<p>${esc(q.p)}</p>`;
+  if(q.flow) inner+=flowSVG;
+  if(q.row) inner+=`<div class="row" id="row">${strips.map(s=>`<div class="strip"><div class="sw">${s[0].endsWith('.mp4')?`<video src="${s[0]}" muted loop playsinline autoplay preload="metadata"></video>`:s[0]?`<img src="${s[0]}" alt="">`:''}</div><b>${esc(s[1])}</b><small>${esc(s[2])}</small></div>`).join('')}</div><div class="rowctl"><button data-row="-1">[ previous ]</button><button data-row="1">[ next ]</button></div>`;
+  if(q.mail) inner+=`<p class="mail">${esc(q.mail)}</p><p><a class="go" href="mailto:${esc(q.mail)}">[ write ]</a> <a class="go" href="${esc(q.yt)}" target="_blank" rel="noopener">[ youtube ]</a></p>`;
+  if(q.go) inner+=`<p><a class="go" href="#" aria-disabled="true">${esc(q.go)}</a></p>`;
+  if(q.ph) inner+=`<p class="ph">${esc(q.ph)}</p>`;
+  return `<section class="panel${q.bg?' img':''}"${q.bg?` style="background-image:url(${q.bg})"`:''}>${inner}</section>`;
+};
+
+const body=document.body, track=document.getElementById('track'), room=document.getElementById('room'), roomBody=document.getElementById('roomBody'), prog=document.getElementById('prog');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const desk=matchMedia('(min-width:900px) and (pointer:fine)');
+
+/* horizontal strip on desktop */
+let x=0, tx=0, max=0, dragging=false, moved=0, sx=0, sxx=0;
+function measure(){max=Math.max(0,track.scrollWidth-innerWidth);tx=Math.min(tx,max);track.style.setProperty('--tw',track.scrollWidth+'px');}
+function mode(){
+  body.classList.toggle('h',desk.matches);
+  if(!desk.matches){track.style.transform='';x=tx=0;}
+  measure();
+}
+desk.addEventListener('change',mode); addEventListener('resize',measure); addEventListener('load',measure); mode();
+function tick(){
+  if(desk.matches){
+    x+= (tx-x)*(reduce?1:.09);
+    track.style.transform=`translate3d(${-x}px,0,0)`;
+    prog.style.width=(max?x/max*100:0)+'%';
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+addEventListener('wheel',e=>{
+  if(!desk.matches||!room.hidden) return;
+  if(e.target.closest('.row')) return;
+  e.preventDefault();
+  tx=Math.max(0,Math.min(max,tx+e.deltaY+e.deltaX));
+  clearTimeout(snapT); snapT=setTimeout(snap,160);
+},{passive:false});
+let snapT=0;
+function snap(){const w=innerWidth;tx=Math.max(0,Math.min(max,Math.round(tx/w)*w));}
+track.addEventListener('pointerdown',e=>{if(!desk.matches)return;dragging=true;moved=0;sx=e.clientX;sxx=tx;});
+addEventListener('pointermove',e=>{if(!dragging)return;moved=Math.abs(e.clientX-sx);tx=Math.max(0,Math.min(max,sxx-(e.clientX-sx)*1.4));});
+addEventListener('pointerup',()=>{if(dragging)snap();dragging=false;});
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&!room.hidden){close();return;}
+  if(!desk.matches||!room.hidden) return;
+  const step=innerWidth;
+  if(['ArrowRight','PageDown',' '].includes(e.key)){tx=Math.min(max,Math.round(tx/step)*step+step);e.preventDefault();}
+  if(['ArrowLeft','PageUp'].includes(e.key)){tx=Math.max(0,Math.round(tx/step)*step-step);e.preventDefault();}
+});
+
+/* tethered open: the frame grows into its room */
+let lastFig=null, zoom=null;
+function rectOf(el){const r=el.getBoundingClientRect();return {left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px'};}
+function open(id,fromEl){
+  const R=rooms[id]; if(!R) return;
+  roomBody.innerHTML=R.panels.map(panelHTML).join('');
+  lastFig=fromEl?fromEl.querySelector('figure'):null;
+  const show=()=>{room.hidden=false;room.scrollTop=0;requestAnimationFrame(()=>room.classList.add('in'));setTimeout(()=>{zoom&&zoom.remove();zoom=null;},380);document.getElementById('back').focus();};
+  if(reduce||!lastFig){show();return;}
+  zoom=document.createElement('div'); zoom.className='zoom';
+  zoom.style.backgroundImage=`url(${R.img})`; Object.assign(zoom.style,rectOf(lastFig));
+  body.appendChild(zoom); zoom.getBoundingClientRect();
+  Object.assign(zoom.style,{left:'0px',top:'0px',width:innerWidth+'px',height:innerHeight+'px'});
+  setTimeout(show,760);
+}
+function close(){
+  room.classList.remove('in');
+  const done=()=>{room.hidden=true;roomBody.innerHTML='';};
+  if(reduce||!lastFig){setTimeout(done,350);return;}
+  const img=roomBody.querySelector('.panel')?.style.backgroundImage;
+  zoom=document.createElement('div'); zoom.className='zoom'; zoom.style.backgroundImage=img||'';
+  Object.assign(zoom.style,{left:'0px',top:'0px',width:innerWidth+'px',height:innerHeight+'px'});
+  body.appendChild(zoom); done(); zoom.getBoundingClientRect();
+  Object.assign(zoom.style,rectOf(lastFig));
+  setTimeout(()=>{zoom&&zoom.remove();zoom=null;},780);
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-open]');
+  if(b){ if(moved>6){moved=0;return;} e.preventDefault(); open(b.dataset.open,b.classList.contains('frame')?b:document.querySelector(`.frame[data-open="${b.dataset.open}"]`)); return; }
+  const r=e.target.closest('[data-row]');
+  if(r){const row=document.getElementById('row');row.scrollBy({left:Number(r.dataset.row)*row.clientWidth*.8,behavior:'smooth'});}
+  if(e.target.closest('a[aria-disabled]')) e.preventDefault();
+});
+document.getElementById('back').addEventListener('click',close);
+document.getElementById('home').addEventListener('click',e=>{e.preventDefault();if(!room.hidden)close();tx=0;scrollTo({top:0,behavior:'smooth'});});
+}
+</script>
+</body>
+</html>
